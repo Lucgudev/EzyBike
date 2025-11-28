@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/data/models/home_model.dart';
 import '../../widget/banner/promo_banner_widget.dart';
+import '../../widget/list_bike/list_bike_widget.dart';
 import 'home_tab_view_model.dart';
 
 class HomeTab extends ConsumerWidget {
@@ -92,6 +93,14 @@ class HomeTab extends ConsumerWidget {
       return const Padding(
         padding: EdgeInsets.only(bottom: 16),
         child: PromoBannerWidget(),
+      );
+    }
+
+    // For bike list type, use ListBikeWidget
+    if (section.sectionType == SectionType.listBike) {
+      return const Padding(
+        padding: EdgeInsets.only(bottom: 16),
+        child: ListBikeWidget(),
       );
     }
 

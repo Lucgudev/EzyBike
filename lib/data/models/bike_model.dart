@@ -6,14 +6,15 @@ part 'bike_model.g.dart';
 @freezed
 class BikeModel with _$BikeModel {
   const factory BikeModel({
-    required String id,
+    required int id,
     required String model,
-    required String photoUrl,
+    @JsonKey(name: 'photo_url') required String photoUrl,
     required int range,
     required int stock,
     String? description,
-    double? batteryCapacity,
-    double? maxSpeed,
+    String? color,
+    @JsonKey(name: 'battery_capacity') double? batteryCapacity,
+    @JsonKey(name: 'max_speed') double? maxSpeed,
   }) = _BikeModel;
 
   factory BikeModel.fromJson(Map<String, dynamic> json) =>

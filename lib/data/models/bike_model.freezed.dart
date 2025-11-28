@@ -21,13 +21,17 @@ BikeModel _$BikeModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BikeModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get model => throw _privateConstructorUsedError;
+  @JsonKey(name: 'photo_url')
   String get photoUrl => throw _privateConstructorUsedError;
   int get range => throw _privateConstructorUsedError;
   int get stock => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  String? get color => throw _privateConstructorUsedError;
+  @JsonKey(name: 'battery_capacity')
   double? get batteryCapacity => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_speed')
   double? get maxSpeed => throw _privateConstructorUsedError;
 
   /// Serializes this BikeModel to a JSON map.
@@ -46,14 +50,15 @@ abstract class $BikeModelCopyWith<$Res> {
       _$BikeModelCopyWithImpl<$Res, BikeModel>;
   @useResult
   $Res call({
-    String id,
+    int id,
     String model,
-    String photoUrl,
+    @JsonKey(name: 'photo_url') String photoUrl,
     int range,
     int stock,
     String? description,
-    double? batteryCapacity,
-    double? maxSpeed,
+    String? color,
+    @JsonKey(name: 'battery_capacity') double? batteryCapacity,
+    @JsonKey(name: 'max_speed') double? maxSpeed,
   });
 }
 
@@ -78,6 +83,7 @@ class _$BikeModelCopyWithImpl<$Res, $Val extends BikeModel>
     Object? range = null,
     Object? stock = null,
     Object? description = freezed,
+    Object? color = freezed,
     Object? batteryCapacity = freezed,
     Object? maxSpeed = freezed,
   }) {
@@ -86,7 +92,7 @@ class _$BikeModelCopyWithImpl<$Res, $Val extends BikeModel>
             id: null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as int,
             model: null == model
                 ? _value.model
                 : model // ignore: cast_nullable_to_non_nullable
@@ -106,6 +112,10 @@ class _$BikeModelCopyWithImpl<$Res, $Val extends BikeModel>
             description: freezed == description
                 ? _value.description
                 : description // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            color: freezed == color
+                ? _value.color
+                : color // ignore: cast_nullable_to_non_nullable
                       as String?,
             batteryCapacity: freezed == batteryCapacity
                 ? _value.batteryCapacity
@@ -131,14 +141,15 @@ abstract class _$$BikeModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
+    int id,
     String model,
-    String photoUrl,
+    @JsonKey(name: 'photo_url') String photoUrl,
     int range,
     int stock,
     String? description,
-    double? batteryCapacity,
-    double? maxSpeed,
+    String? color,
+    @JsonKey(name: 'battery_capacity') double? batteryCapacity,
+    @JsonKey(name: 'max_speed') double? maxSpeed,
   });
 }
 
@@ -162,6 +173,7 @@ class __$$BikeModelImplCopyWithImpl<$Res>
     Object? range = null,
     Object? stock = null,
     Object? description = freezed,
+    Object? color = freezed,
     Object? batteryCapacity = freezed,
     Object? maxSpeed = freezed,
   }) {
@@ -170,7 +182,7 @@ class __$$BikeModelImplCopyWithImpl<$Res>
         id: null == id
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as int,
         model: null == model
             ? _value.model
             : model // ignore: cast_nullable_to_non_nullable
@@ -191,6 +203,10 @@ class __$$BikeModelImplCopyWithImpl<$Res>
             ? _value.description
             : description // ignore: cast_nullable_to_non_nullable
                   as String?,
+        color: freezed == color
+            ? _value.color
+            : color // ignore: cast_nullable_to_non_nullable
+                  as String?,
         batteryCapacity: freezed == batteryCapacity
             ? _value.batteryCapacity
             : batteryCapacity // ignore: cast_nullable_to_non_nullable
@@ -210,22 +226,24 @@ class _$BikeModelImpl implements _BikeModel {
   const _$BikeModelImpl({
     required this.id,
     required this.model,
-    required this.photoUrl,
+    @JsonKey(name: 'photo_url') required this.photoUrl,
     required this.range,
     required this.stock,
     this.description,
-    this.batteryCapacity,
-    this.maxSpeed,
+    this.color,
+    @JsonKey(name: 'battery_capacity') this.batteryCapacity,
+    @JsonKey(name: 'max_speed') this.maxSpeed,
   });
 
   factory _$BikeModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BikeModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String model;
   @override
+  @JsonKey(name: 'photo_url')
   final String photoUrl;
   @override
   final int range;
@@ -234,13 +252,17 @@ class _$BikeModelImpl implements _BikeModel {
   @override
   final String? description;
   @override
+  final String? color;
+  @override
+  @JsonKey(name: 'battery_capacity')
   final double? batteryCapacity;
   @override
+  @JsonKey(name: 'max_speed')
   final double? maxSpeed;
 
   @override
   String toString() {
-    return 'BikeModel(id: $id, model: $model, photoUrl: $photoUrl, range: $range, stock: $stock, description: $description, batteryCapacity: $batteryCapacity, maxSpeed: $maxSpeed)';
+    return 'BikeModel(id: $id, model: $model, photoUrl: $photoUrl, range: $range, stock: $stock, description: $description, color: $color, batteryCapacity: $batteryCapacity, maxSpeed: $maxSpeed)';
   }
 
   @override
@@ -256,6 +278,7 @@ class _$BikeModelImpl implements _BikeModel {
             (identical(other.stock, stock) || other.stock == stock) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.color, color) || other.color == color) &&
             (identical(other.batteryCapacity, batteryCapacity) ||
                 other.batteryCapacity == batteryCapacity) &&
             (identical(other.maxSpeed, maxSpeed) ||
@@ -272,6 +295,7 @@ class _$BikeModelImpl implements _BikeModel {
     range,
     stock,
     description,
+    color,
     batteryCapacity,
     maxSpeed,
   );
@@ -292,24 +316,26 @@ class _$BikeModelImpl implements _BikeModel {
 
 abstract class _BikeModel implements BikeModel {
   const factory _BikeModel({
-    required final String id,
+    required final int id,
     required final String model,
-    required final String photoUrl,
+    @JsonKey(name: 'photo_url') required final String photoUrl,
     required final int range,
     required final int stock,
     final String? description,
-    final double? batteryCapacity,
-    final double? maxSpeed,
+    final String? color,
+    @JsonKey(name: 'battery_capacity') final double? batteryCapacity,
+    @JsonKey(name: 'max_speed') final double? maxSpeed,
   }) = _$BikeModelImpl;
 
   factory _BikeModel.fromJson(Map<String, dynamic> json) =
       _$BikeModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get model;
   @override
+  @JsonKey(name: 'photo_url')
   String get photoUrl;
   @override
   int get range;
@@ -318,8 +344,12 @@ abstract class _BikeModel implements BikeModel {
   @override
   String? get description;
   @override
+  String? get color;
+  @override
+  @JsonKey(name: 'battery_capacity')
   double? get batteryCapacity;
   @override
+  @JsonKey(name: 'max_speed')
   double? get maxSpeed;
 
   /// Create a copy of BikeModel
