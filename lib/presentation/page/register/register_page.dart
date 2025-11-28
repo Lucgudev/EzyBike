@@ -1,52 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
-import '../../../core/router/routes.dart';
-import 'login_page_view_model.dart';
+import 'register_page_view_model.dart';
 
-class LoginPage extends ConsumerStatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends ConsumerStatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  ConsumerState<LoginPage> createState() => _LoginPageState();
+  ConsumerState<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends ConsumerState<LoginPage> {
+class _RegisterPageState extends ConsumerState<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   void initState() {
     super.initState();
     _emailController.addListener(_onFormChanged);
     _passwordController.addListener(_onFormChanged);
+    _confirmPasswordController.addListener(_onFormChanged);
   }
 
   @override
   void dispose() {
     _emailController.removeListener(_onFormChanged);
     _passwordController.removeListener(_onFormChanged);
+    _confirmPasswordController.removeListener(_onFormChanged);
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
   void _onFormChanged() {
-    ref
-        .read(loginFormValidationProvider.notifier)
-        .validateForm(
+    ref.read(registerFormValidationProvider.notifier).validateForm(
           email: _emailController.text,
           password: _passwordController.text,
+          confirmPassword: _confirmPasswordController.text,
         );
   }
 
-  Future<void> _handleSignIn() async {
+  Future<void> _handleSignUp() async {
     if (_formKey.currentState?.validate() ?? false) {
-      await ref
-          .read(loginPageViewModelProvider.notifier)
-          .signIn(
+      await ref.read(registerPageViewModelProvider.notifier).signUp(
             email: _emailController.text.trim(),
             password: _passwordController.text,
           );
@@ -55,18 +55,18 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final loginState = ref.watch(loginPageViewModelProvider);
-    final isFormValid = ref.watch(loginFormValidationProvider);
-    final formValidation = ref.read(loginFormValidationProvider.notifier);
+    final registerState = ref.watch(registerPageViewModelProvider);
+    final isFormValid = ref.watch(registerFormValidationProvider);
+    final formValidation = ref.read(registerFormValidationProvider.notifier);
 
     ref.listen<AsyncValue>(
-      loginPageViewModelProvider,
+      registerPageViewModelProvider,
       (previous, next) {
         next.whenOrNull(
           error: (error, stackTrace) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Login failed: ${error.toString()}'),
+                content: Text('Registration failed: ${error.toString()}'),
                 backgroundColor: Colors.red,
               ),
             );
@@ -75,11 +75,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             if (user != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('Login successful!'),
+                  content: Text('Registration successful!'),
                   backgroundColor: Colors.green,
                 ),
               );
-              // TODO: Navigate to homepage after successful login
+              // TODO: Navigate to homepage after successful registration
             }
           },
         );
@@ -87,6 +87,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     );
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sign Up'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -105,18 +109,18 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Bike Customer App',
+                    'Create Account',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                          fontWeight: FontWeight.bold,
+                        ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Sign in to continue',
+                    'Sign up to get started',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Colors.grey[600],
-                    ),
+                          color: Colors.grey[600],
+                        ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 48),
@@ -141,9 +145,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
-                    textInputAction: TextInputAction.done,
+                    textInputAction: TextInputAction.next,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    onFieldSubmitted: (_) => _handleSignIn(),
                     decoration: InputDecoration(
                       labelText: 'Password',
                       hintText: 'Enter your password',
@@ -164,17 +167,47 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     ),
                     validator: formValidation.validatePasswordField,
                   ),
+                  const SizedBox(height: 16),
+
+                  // Confirm Password Field
+                  TextFormField(
+                    controller: _confirmPasswordController,
+                    obscureText: _obscureConfirmPassword,
+                    textInputAction: TextInputAction.done,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    onFieldSubmitted: (_) => _handleSignUp(),
+                    decoration: InputDecoration(
+                      labelText: 'Confirm Password',
+                      hintText: 'Re-enter your password',
+                      prefixIcon: const Icon(Icons.lock_outlined),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureConfirmPassword
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureConfirmPassword = !_obscureConfirmPassword;
+                          });
+                        },
+                      ),
+                      border: const OutlineInputBorder(),
+                    ),
+                    validator: (value) => formValidation
+                        .validateConfirmPasswordField(value, _passwordController.text),
+                  ),
                   const SizedBox(height: 24),
 
-                  // Sign In Button
+                  // Sign Up Button
                   FilledButton(
-                    onPressed: loginState.isLoading || !isFormValid
+                    onPressed: registerState.isLoading || !isFormValid
                         ? null
-                        : _handleSignIn,
+                        : _handleSignUp,
                     style: FilledButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
-                    child: loginState.isLoading
+                    child: registerState.isLoading
                         ? const SizedBox(
                             height: 20,
                             width: 20,
@@ -184,29 +217,27 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             ),
                           )
                         : const Text(
-                            'Sign In',
+                            'Sign Up',
                             style: TextStyle(fontSize: 16),
                           ),
                   ),
                   const SizedBox(height: 16),
 
-                  // Sign Up Link
+                  // Sign In Link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account? ",
+                        'Already have an account? ',
                         style: TextStyle(color: Colors.grey[600]),
                       ),
                       TextButton(
-                        onPressed: loginState.isLoading
+                        onPressed: registerState.isLoading
                             ? null
                             : () {
-                                ref
-                                    .read(appNavigatorProvider)
-                                    .pushNamedWithResult(Routes.registerPage);
+                                Navigator.of(context).pop();
                               },
-                        child: const Text('Sign Up'),
+                        child: const Text('Sign In'),
                       ),
                     ],
                   ),
