@@ -8,18 +8,18 @@ part of 'banner_model.dart';
 
 _$BannerModelImpl _$$BannerModelImplFromJson(Map<String, dynamic> json) =>
     _$BannerModelImpl(
-      id: json['id'] as String,
-      photoUrl: json['photoUrl'] as String,
+      id: (json['id'] as num).toInt(),
+      photoUrl: json['photo_url'] as String,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      actionUrl: json['actionUrl'] as String?,
+      actionUrl: json['action_url'] as String?,
     );
 
 Map<String, dynamic> _$$BannerModelImplToJson(_$BannerModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'photoUrl': instance.photoUrl,
+      'photo_url': instance.photoUrl,
       'title': instance.title,
       'description': instance.description,
-      'actionUrl': instance.actionUrl,
+      'action_url': instance.actionUrl,
     };

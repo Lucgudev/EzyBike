@@ -21,10 +21,12 @@ BannerModel _$BannerModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BannerModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'photo_url')
   String get photoUrl => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'action_url')
   String? get actionUrl => throw _privateConstructorUsedError;
 
   /// Serializes this BannerModel to a JSON map.
@@ -45,11 +47,11 @@ abstract class $BannerModelCopyWith<$Res> {
   ) = _$BannerModelCopyWithImpl<$Res, BannerModel>;
   @useResult
   $Res call({
-    String id,
-    String photoUrl,
+    int id,
+    @JsonKey(name: 'photo_url') String photoUrl,
     String? title,
     String? description,
-    String? actionUrl,
+    @JsonKey(name: 'action_url') String? actionUrl,
   });
 }
 
@@ -79,7 +81,7 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
             id: null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as int,
             photoUrl: null == photoUrl
                 ? _value.photoUrl
                 : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -112,11 +114,11 @@ abstract class _$$BannerModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
-    String photoUrl,
+    int id,
+    @JsonKey(name: 'photo_url') String photoUrl,
     String? title,
     String? description,
-    String? actionUrl,
+    @JsonKey(name: 'action_url') String? actionUrl,
   });
 }
 
@@ -145,7 +147,7 @@ class __$$BannerModelImplCopyWithImpl<$Res>
         id: null == id
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as int,
         photoUrl: null == photoUrl
             ? _value.photoUrl
             : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -172,24 +174,26 @@ class __$$BannerModelImplCopyWithImpl<$Res>
 class _$BannerModelImpl implements _BannerModel {
   const _$BannerModelImpl({
     required this.id,
-    required this.photoUrl,
+    @JsonKey(name: 'photo_url') required this.photoUrl,
     this.title,
     this.description,
-    this.actionUrl,
+    @JsonKey(name: 'action_url') this.actionUrl,
   });
 
   factory _$BannerModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BannerModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
+  @JsonKey(name: 'photo_url')
   final String photoUrl;
   @override
   final String? title;
   @override
   final String? description;
   @override
+  @JsonKey(name: 'action_url')
   final String? actionUrl;
 
   @override
@@ -233,25 +237,27 @@ class _$BannerModelImpl implements _BannerModel {
 
 abstract class _BannerModel implements BannerModel {
   const factory _BannerModel({
-    required final String id,
-    required final String photoUrl,
+    required final int id,
+    @JsonKey(name: 'photo_url') required final String photoUrl,
     final String? title,
     final String? description,
-    final String? actionUrl,
+    @JsonKey(name: 'action_url') final String? actionUrl,
   }) = _$BannerModelImpl;
 
   factory _BannerModel.fromJson(Map<String, dynamic> json) =
       _$BannerModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
+  @JsonKey(name: 'photo_url')
   String get photoUrl;
   @override
   String? get title;
   @override
   String? get description;
   @override
+  @JsonKey(name: 'action_url')
   String? get actionUrl;
 
   /// Create a copy of BannerModel
