@@ -10,14 +10,14 @@ _$SectionModelImpl _$$SectionModelImplFromJson(Map<String, dynamic> json) =>
     _$SectionModelImpl(
       title: json['title'] as String,
       description: json['description'] as String,
-      sectionType: $enumDecode(_$SectionTypeEnumMap, json['sectionType']),
+      sectionType: $enumDecode(_$SectionTypeEnumMap, json['type']),
     );
 
 Map<String, dynamic> _$$SectionModelImplToJson(_$SectionModelImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
-      'sectionType': _$SectionTypeEnumMap[instance.sectionType]!,
+      'type': _$SectionTypeEnumMap[instance.sectionType]!,
     };
 
 const _$SectionTypeEnumMap = {

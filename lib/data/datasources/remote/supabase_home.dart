@@ -9,9 +9,13 @@ class SupabaseHomeDataSource {
       final data = await Supabase.instance.client
           .from('home')
           .select('section_id, sort_order, section:section_id (*)')
-          .order('sort_order');
-      final List<SectionModel> sections = data
-          .map((jsonItem) => SectionModel.fromJson(jsonItem))
+          .order('sort_order', ascending: true);
+      final List<SectionModel> sections = (data as List)
+          .map(
+            (jsonItem) => SectionModel.fromJson(
+              jsonItem['section'] as Map<String, dynamic>,
+            ),
+          )
           .toList();
       return HomeModel(sections: sections);
     } catch (e) {

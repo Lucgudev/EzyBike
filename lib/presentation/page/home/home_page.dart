@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'tab_page/home_tab.dart';
-import 'tab_page/order_tab.dart';
-import 'tab_page/profile_tab.dart';
+import 'tab_page/home_tab/home_tab.dart';
+import 'tab_page/order_tab/order_tab.dart';
+import 'tab_page/profile_tab/profile_tab.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});

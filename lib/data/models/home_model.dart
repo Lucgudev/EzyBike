@@ -17,7 +17,7 @@ class SectionModel with _$SectionModel {
   const factory SectionModel({
     required String title,
     required String description,
-    required SectionType sectionType,
+    @JsonKey(name: 'type') required SectionType sectionType,
   }) = _SectionModel;
 
   factory SectionModel.fromJson(Map<String, dynamic> json) =>

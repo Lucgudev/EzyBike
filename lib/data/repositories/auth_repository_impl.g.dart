@@ -7,7 +7,7 @@ part of 'auth_repository_impl.dart';
 // **************************************************************************
 
 String _$supabaseAuthDataSourceHash() =>
-    r'e571bb3527de7755004a1381dd623e69093dd263';
+    r'241216bce46f4dc7aa565309e2c793d58302f808';
 
 /// See also [supabaseAuthDataSource].
 @ProviderFor(supabaseAuthDataSource)

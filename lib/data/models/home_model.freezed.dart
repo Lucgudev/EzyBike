@@ -23,6 +23,7 @@ SectionModel _$SectionModelFromJson(Map<String, dynamic> json) {
 mixin _$SectionModel {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type')
   SectionType get sectionType => throw _privateConstructorUsedError;
 
   /// Serializes this SectionModel to a JSON map.
@@ -42,7 +43,11 @@ abstract class $SectionModelCopyWith<$Res> {
     $Res Function(SectionModel) then,
   ) = _$SectionModelCopyWithImpl<$Res, SectionModel>;
   @useResult
-  $Res call({String title, String description, SectionType sectionType});
+  $Res call({
+    String title,
+    String description,
+    @JsonKey(name: 'type') SectionType sectionType,
+  });
 }
 
 /// @nodoc
@@ -93,7 +98,11 @@ abstract class _$$SectionModelImplCopyWith<$Res>
   ) = __$$SectionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String description, SectionType sectionType});
+  $Res call({
+    String title,
+    String description,
+    @JsonKey(name: 'type') SectionType sectionType,
+  });
 }
 
 /// @nodoc
@@ -139,7 +148,7 @@ class _$SectionModelImpl implements _SectionModel {
   const _$SectionModelImpl({
     required this.title,
     required this.description,
-    required this.sectionType,
+    @JsonKey(name: 'type') required this.sectionType,
   });
 
   factory _$SectionModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -150,6 +159,7 @@ class _$SectionModelImpl implements _SectionModel {
   @override
   final String description;
   @override
+  @JsonKey(name: 'type')
   final SectionType sectionType;
 
   @override
@@ -191,7 +201,7 @@ abstract class _SectionModel implements SectionModel {
   const factory _SectionModel({
     required final String title,
     required final String description,
-    required final SectionType sectionType,
+    @JsonKey(name: 'type') required final SectionType sectionType,
   }) = _$SectionModelImpl;
 
   factory _SectionModel.fromJson(Map<String, dynamic> json) =
@@ -202,6 +212,7 @@ abstract class _SectionModel implements SectionModel {
   @override
   String get description;
   @override
+  @JsonKey(name: 'type')
   SectionType get sectionType;
 
   /// Create a copy of SectionModel
