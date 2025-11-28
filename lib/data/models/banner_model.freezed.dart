@@ -76,31 +76,26 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
   }) {
     return _then(
       _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            imageUrl:
-                null == imageUrl
-                    ? _value.imageUrl
-                    : imageUrl // ignore: cast_nullable_to_non_nullable
-                        as String,
-            title:
-                freezed == title
-                    ? _value.title
-                    : title // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            description:
-                freezed == description
-                    ? _value.description
-                    : description // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            actionUrl:
-                freezed == actionUrl
-                    ? _value.actionUrl
-                    : actionUrl // ignore: cast_nullable_to_non_nullable
-                        as String?,
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            imageUrl: null == imageUrl
+                ? _value.imageUrl
+                : imageUrl // ignore: cast_nullable_to_non_nullable
+                      as String,
+            title: freezed == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            description: freezed == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            actionUrl: freezed == actionUrl
+                ? _value.actionUrl
+                : actionUrl // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -147,31 +142,26 @@ class __$$BannerModelImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$BannerModelImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        imageUrl:
-            null == imageUrl
-                ? _value.imageUrl
-                : imageUrl // ignore: cast_nullable_to_non_nullable
-                    as String,
-        title:
-            freezed == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        description:
-            freezed == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        actionUrl:
-            freezed == actionUrl
-                ? _value.actionUrl
-                : actionUrl // ignore: cast_nullable_to_non_nullable
-                    as String?,
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        imageUrl: null == imageUrl
+            ? _value.imageUrl
+            : imageUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: freezed == title
+            ? _value.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        description: freezed == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        actionUrl: freezed == actionUrl
+            ? _value.actionUrl
+            : actionUrl // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }

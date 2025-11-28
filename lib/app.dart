@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Router;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/core/router/router.dart';
 
 import 'core/provider/global_provider.dart';
+import 'core/router/routes.dart';
 
 class SampleBikeCustomerApp extends ConsumerStatefulWidget {
   const SampleBikeCustomerApp({super.key});
@@ -25,6 +27,8 @@ class _SampleBikeCustomerAppState extends ConsumerState<SampleBikeCustomerApp> {
     return MaterialApp(
       title: 'Sample Bike Customer App',
       navigatorKey: _navigatorKey,
+      routes: Router.generateRoute(),
+      initialRoute: Routes.rootPage,
     );
   }
 }

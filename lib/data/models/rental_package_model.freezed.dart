@@ -82,41 +82,34 @@ class _$RentalPackageModelCopyWithImpl<$Res, $Val extends RentalPackageModel>
   }) {
     return _then(
       _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            plan:
-                null == plan
-                    ? _value.plan
-                    : plan // ignore: cast_nullable_to_non_nullable
-                        as String,
-            pricePerDay:
-                null == pricePerDay
-                    ? _value.pricePerDay
-                    : pricePerDay // ignore: cast_nullable_to_non_nullable
-                        as double,
-            pricePerWeek:
-                null == pricePerWeek
-                    ? _value.pricePerWeek
-                    : pricePerWeek // ignore: cast_nullable_to_non_nullable
-                        as double,
-            pricePerMonth:
-                null == pricePerMonth
-                    ? _value.pricePerMonth
-                    : pricePerMonth // ignore: cast_nullable_to_non_nullable
-                        as double,
-            terms:
-                null == terms
-                    ? _value.terms
-                    : terms // ignore: cast_nullable_to_non_nullable
-                        as String,
-            description:
-                freezed == description
-                    ? _value.description
-                    : description // ignore: cast_nullable_to_non_nullable
-                        as String?,
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            plan: null == plan
+                ? _value.plan
+                : plan // ignore: cast_nullable_to_non_nullable
+                      as String,
+            pricePerDay: null == pricePerDay
+                ? _value.pricePerDay
+                : pricePerDay // ignore: cast_nullable_to_non_nullable
+                      as double,
+            pricePerWeek: null == pricePerWeek
+                ? _value.pricePerWeek
+                : pricePerWeek // ignore: cast_nullable_to_non_nullable
+                      as double,
+            pricePerMonth: null == pricePerMonth
+                ? _value.pricePerMonth
+                : pricePerMonth // ignore: cast_nullable_to_non_nullable
+                      as double,
+            terms: null == terms
+                ? _value.terms
+                : terms // ignore: cast_nullable_to_non_nullable
+                      as String,
+            description: freezed == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -167,41 +160,34 @@ class __$$RentalPackageModelImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$RentalPackageModelImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        plan:
-            null == plan
-                ? _value.plan
-                : plan // ignore: cast_nullable_to_non_nullable
-                    as String,
-        pricePerDay:
-            null == pricePerDay
-                ? _value.pricePerDay
-                : pricePerDay // ignore: cast_nullable_to_non_nullable
-                    as double,
-        pricePerWeek:
-            null == pricePerWeek
-                ? _value.pricePerWeek
-                : pricePerWeek // ignore: cast_nullable_to_non_nullable
-                    as double,
-        pricePerMonth:
-            null == pricePerMonth
-                ? _value.pricePerMonth
-                : pricePerMonth // ignore: cast_nullable_to_non_nullable
-                    as double,
-        terms:
-            null == terms
-                ? _value.terms
-                : terms // ignore: cast_nullable_to_non_nullable
-                    as String,
-        description:
-            freezed == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                    as String?,
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        plan: null == plan
+            ? _value.plan
+            : plan // ignore: cast_nullable_to_non_nullable
+                  as String,
+        pricePerDay: null == pricePerDay
+            ? _value.pricePerDay
+            : pricePerDay // ignore: cast_nullable_to_non_nullable
+                  as double,
+        pricePerWeek: null == pricePerWeek
+            ? _value.pricePerWeek
+            : pricePerWeek // ignore: cast_nullable_to_non_nullable
+                  as double,
+        pricePerMonth: null == pricePerMonth
+            ? _value.pricePerMonth
+            : pricePerMonth // ignore: cast_nullable_to_non_nullable
+                  as double,
+        terms: null == terms
+            ? _value.terms
+            : terms // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: freezed == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }

@@ -85,46 +85,38 @@ class _$RentalRequestModelCopyWithImpl<$Res, $Val extends RentalRequestModel>
   }) {
     return _then(
       _value.copyWith(
-            id:
-                freezed == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            userId:
-                null == userId
-                    ? _value.userId
-                    : userId // ignore: cast_nullable_to_non_nullable
-                        as String,
-            bikeId:
-                null == bikeId
-                    ? _value.bikeId
-                    : bikeId // ignore: cast_nullable_to_non_nullable
-                        as String,
-            startDate:
-                null == startDate
-                    ? _value.startDate
-                    : startDate // ignore: cast_nullable_to_non_nullable
-                        as DateTime,
-            pickupLocation:
-                null == pickupLocation
-                    ? _value.pickupLocation
-                    : pickupLocation // ignore: cast_nullable_to_non_nullable
-                        as String,
-            phoneContact:
-                null == phoneContact
-                    ? _value.phoneContact
-                    : phoneContact // ignore: cast_nullable_to_non_nullable
-                        as String,
-            status:
-                freezed == status
-                    ? _value.status
-                    : status // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            createdAt:
-                freezed == createdAt
-                    ? _value.createdAt
-                    : createdAt // ignore: cast_nullable_to_non_nullable
-                        as DateTime?,
+            id: freezed == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            userId: null == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
+                      as String,
+            bikeId: null == bikeId
+                ? _value.bikeId
+                : bikeId // ignore: cast_nullable_to_non_nullable
+                      as String,
+            startDate: null == startDate
+                ? _value.startDate
+                : startDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime,
+            pickupLocation: null == pickupLocation
+                ? _value.pickupLocation
+                : pickupLocation // ignore: cast_nullable_to_non_nullable
+                      as String,
+            phoneContact: null == phoneContact
+                ? _value.phoneContact
+                : phoneContact // ignore: cast_nullable_to_non_nullable
+                      as String,
+            status: freezed == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            createdAt: freezed == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
           )
           as $Val,
     );
@@ -177,46 +169,38 @@ class __$$RentalRequestModelImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$RentalRequestModelImpl(
-        id:
-            freezed == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        userId:
-            null == userId
-                ? _value.userId
-                : userId // ignore: cast_nullable_to_non_nullable
-                    as String,
-        bikeId:
-            null == bikeId
-                ? _value.bikeId
-                : bikeId // ignore: cast_nullable_to_non_nullable
-                    as String,
-        startDate:
-            null == startDate
-                ? _value.startDate
-                : startDate // ignore: cast_nullable_to_non_nullable
-                    as DateTime,
-        pickupLocation:
-            null == pickupLocation
-                ? _value.pickupLocation
-                : pickupLocation // ignore: cast_nullable_to_non_nullable
-                    as String,
-        phoneContact:
-            null == phoneContact
-                ? _value.phoneContact
-                : phoneContact // ignore: cast_nullable_to_non_nullable
-                    as String,
-        status:
-            freezed == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        createdAt:
-            freezed == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
-                    as DateTime?,
+        id: freezed == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        userId: null == userId
+            ? _value.userId
+            : userId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        bikeId: null == bikeId
+            ? _value.bikeId
+            : bikeId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        startDate: null == startDate
+            ? _value.startDate
+            : startDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+        pickupLocation: null == pickupLocation
+            ? _value.pickupLocation
+            : pickupLocation // ignore: cast_nullable_to_non_nullable
+                  as String,
+        phoneContact: null == phoneContact
+            ? _value.phoneContact
+            : phoneContact // ignore: cast_nullable_to_non_nullable
+                  as String,
+        status: freezed == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        createdAt: freezed == createdAt
+            ? _value.createdAt
+            : createdAt // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
       ),
     );
   }

@@ -16,10 +16,9 @@ _$RentalRequestModelImpl _$$RentalRequestModelImplFromJson(
   pickupLocation: json['pickupLocation'] as String,
   phoneContact: json['phoneContact'] as String,
   status: json['status'] as String?,
-  createdAt:
-      json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
+  createdAt: json['createdAt'] == null
+      ? null
+      : DateTime.parse(json['createdAt'] as String),
 );
 
 Map<String, dynamic> _$$RentalRequestModelImplToJson(

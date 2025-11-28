@@ -86,51 +86,42 @@ class _$BikeModelCopyWithImpl<$Res, $Val extends BikeModel>
   }) {
     return _then(
       _value.copyWith(
-            id:
-                null == id
-                    ? _value.id
-                    : id // ignore: cast_nullable_to_non_nullable
-                        as String,
-            model:
-                null == model
-                    ? _value.model
-                    : model // ignore: cast_nullable_to_non_nullable
-                        as String,
-            photoUrl:
-                null == photoUrl
-                    ? _value.photoUrl
-                    : photoUrl // ignore: cast_nullable_to_non_nullable
-                        as String,
-            range:
-                null == range
-                    ? _value.range
-                    : range // ignore: cast_nullable_to_non_nullable
-                        as int,
-            isAvailable:
-                null == isAvailable
-                    ? _value.isAvailable
-                    : isAvailable // ignore: cast_nullable_to_non_nullable
-                        as bool,
-            description:
-                freezed == description
-                    ? _value.description
-                    : description // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            specifications:
-                freezed == specifications
-                    ? _value.specifications
-                    : specifications // ignore: cast_nullable_to_non_nullable
-                        as String?,
-            batteryCapacity:
-                freezed == batteryCapacity
-                    ? _value.batteryCapacity
-                    : batteryCapacity // ignore: cast_nullable_to_non_nullable
-                        as double?,
-            maxSpeed:
-                freezed == maxSpeed
-                    ? _value.maxSpeed
-                    : maxSpeed // ignore: cast_nullable_to_non_nullable
-                        as double?,
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            model: null == model
+                ? _value.model
+                : model // ignore: cast_nullable_to_non_nullable
+                      as String,
+            photoUrl: null == photoUrl
+                ? _value.photoUrl
+                : photoUrl // ignore: cast_nullable_to_non_nullable
+                      as String,
+            range: null == range
+                ? _value.range
+                : range // ignore: cast_nullable_to_non_nullable
+                      as int,
+            isAvailable: null == isAvailable
+                ? _value.isAvailable
+                : isAvailable // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            description: freezed == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            specifications: freezed == specifications
+                ? _value.specifications
+                : specifications // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            batteryCapacity: freezed == batteryCapacity
+                ? _value.batteryCapacity
+                : batteryCapacity // ignore: cast_nullable_to_non_nullable
+                      as double?,
+            maxSpeed: freezed == maxSpeed
+                ? _value.maxSpeed
+                : maxSpeed // ignore: cast_nullable_to_non_nullable
+                      as double?,
           )
           as $Val,
     );
@@ -185,51 +176,42 @@ class __$$BikeModelImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$BikeModelImpl(
-        id:
-            null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                    as String,
-        model:
-            null == model
-                ? _value.model
-                : model // ignore: cast_nullable_to_non_nullable
-                    as String,
-        photoUrl:
-            null == photoUrl
-                ? _value.photoUrl
-                : photoUrl // ignore: cast_nullable_to_non_nullable
-                    as String,
-        range:
-            null == range
-                ? _value.range
-                : range // ignore: cast_nullable_to_non_nullable
-                    as int,
-        isAvailable:
-            null == isAvailable
-                ? _value.isAvailable
-                : isAvailable // ignore: cast_nullable_to_non_nullable
-                    as bool,
-        description:
-            freezed == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        specifications:
-            freezed == specifications
-                ? _value.specifications
-                : specifications // ignore: cast_nullable_to_non_nullable
-                    as String?,
-        batteryCapacity:
-            freezed == batteryCapacity
-                ? _value.batteryCapacity
-                : batteryCapacity // ignore: cast_nullable_to_non_nullable
-                    as double?,
-        maxSpeed:
-            freezed == maxSpeed
-                ? _value.maxSpeed
-                : maxSpeed // ignore: cast_nullable_to_non_nullable
-                    as double?,
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        model: null == model
+            ? _value.model
+            : model // ignore: cast_nullable_to_non_nullable
+                  as String,
+        photoUrl: null == photoUrl
+            ? _value.photoUrl
+            : photoUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        range: null == range
+            ? _value.range
+            : range // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isAvailable: null == isAvailable
+            ? _value.isAvailable
+            : isAvailable // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        description: freezed == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        specifications: freezed == specifications
+            ? _value.specifications
+            : specifications // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        batteryCapacity: freezed == batteryCapacity
+            ? _value.batteryCapacity
+            : batteryCapacity // ignore: cast_nullable_to_non_nullable
+                  as double?,
+        maxSpeed: freezed == maxSpeed
+            ? _value.maxSpeed
+            : maxSpeed // ignore: cast_nullable_to_non_nullable
+                  as double?,
       ),
     );
   }

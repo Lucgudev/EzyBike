@@ -1,5 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+part of 'main.dart';
 
 Future<ProviderContainer> _mainInitializer() async {
   await _setupSupabase();
