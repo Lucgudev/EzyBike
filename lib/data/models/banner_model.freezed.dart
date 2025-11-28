@@ -22,7 +22,7 @@ BannerModel _$BannerModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BannerModel {
   String get id => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get photoUrl => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get actionUrl => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $BannerModelCopyWith<$Res> {
   @useResult
   $Res call({
     String id,
-    String imageUrl,
+    String photoUrl,
     String? title,
     String? description,
     String? actionUrl,
@@ -69,7 +69,7 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
   @override
   $Res call({
     Object? id = null,
-    Object? imageUrl = null,
+    Object? photoUrl = null,
     Object? title = freezed,
     Object? description = freezed,
     Object? actionUrl = freezed,
@@ -80,9 +80,9 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                       as String,
-            imageUrl: null == imageUrl
-                ? _value.imageUrl
-                : imageUrl // ignore: cast_nullable_to_non_nullable
+            photoUrl: null == photoUrl
+                ? _value.photoUrl
+                : photoUrl // ignore: cast_nullable_to_non_nullable
                       as String,
             title: freezed == title
                 ? _value.title
@@ -113,7 +113,7 @@ abstract class _$$BannerModelImplCopyWith<$Res>
   @useResult
   $Res call({
     String id,
-    String imageUrl,
+    String photoUrl,
     String? title,
     String? description,
     String? actionUrl,
@@ -135,7 +135,7 @@ class __$$BannerModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? imageUrl = null,
+    Object? photoUrl = null,
     Object? title = freezed,
     Object? description = freezed,
     Object? actionUrl = freezed,
@@ -146,9 +146,9 @@ class __$$BannerModelImplCopyWithImpl<$Res>
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
                   as String,
-        imageUrl: null == imageUrl
-            ? _value.imageUrl
-            : imageUrl // ignore: cast_nullable_to_non_nullable
+        photoUrl: null == photoUrl
+            ? _value.photoUrl
+            : photoUrl // ignore: cast_nullable_to_non_nullable
                   as String,
         title: freezed == title
             ? _value.title
@@ -172,7 +172,7 @@ class __$$BannerModelImplCopyWithImpl<$Res>
 class _$BannerModelImpl implements _BannerModel {
   const _$BannerModelImpl({
     required this.id,
-    required this.imageUrl,
+    required this.photoUrl,
     this.title,
     this.description,
     this.actionUrl,
@@ -184,7 +184,7 @@ class _$BannerModelImpl implements _BannerModel {
   @override
   final String id;
   @override
-  final String imageUrl;
+  final String photoUrl;
   @override
   final String? title;
   @override
@@ -194,7 +194,7 @@ class _$BannerModelImpl implements _BannerModel {
 
   @override
   String toString() {
-    return 'BannerModel(id: $id, imageUrl: $imageUrl, title: $title, description: $description, actionUrl: $actionUrl)';
+    return 'BannerModel(id: $id, photoUrl: $photoUrl, title: $title, description: $description, actionUrl: $actionUrl)';
   }
 
   @override
@@ -203,8 +203,8 @@ class _$BannerModelImpl implements _BannerModel {
         (other.runtimeType == runtimeType &&
             other is _$BannerModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -215,7 +215,7 @@ class _$BannerModelImpl implements _BannerModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, imageUrl, title, description, actionUrl);
+      Object.hash(runtimeType, id, photoUrl, title, description, actionUrl);
 
   /// Create a copy of BannerModel
   /// with the given fields replaced by the non-null parameter values.
@@ -234,7 +234,7 @@ class _$BannerModelImpl implements _BannerModel {
 abstract class _BannerModel implements BannerModel {
   const factory _BannerModel({
     required final String id,
-    required final String imageUrl,
+    required final String photoUrl,
     final String? title,
     final String? description,
     final String? actionUrl,
@@ -246,7 +246,7 @@ abstract class _BannerModel implements BannerModel {
   @override
   String get id;
   @override
-  String get imageUrl;
+  String get photoUrl;
   @override
   String? get title;
   @override

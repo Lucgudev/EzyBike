@@ -25,9 +25,8 @@ mixin _$BikeModel {
   String get model => throw _privateConstructorUsedError;
   String get photoUrl => throw _privateConstructorUsedError;
   int get range => throw _privateConstructorUsedError;
-  bool get isAvailable => throw _privateConstructorUsedError;
+  int get stock => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  String? get specifications => throw _privateConstructorUsedError;
   double? get batteryCapacity => throw _privateConstructorUsedError;
   double? get maxSpeed => throw _privateConstructorUsedError;
 
@@ -51,9 +50,8 @@ abstract class $BikeModelCopyWith<$Res> {
     String model,
     String photoUrl,
     int range,
-    bool isAvailable,
+    int stock,
     String? description,
-    String? specifications,
     double? batteryCapacity,
     double? maxSpeed,
   });
@@ -78,9 +76,8 @@ class _$BikeModelCopyWithImpl<$Res, $Val extends BikeModel>
     Object? model = null,
     Object? photoUrl = null,
     Object? range = null,
-    Object? isAvailable = null,
+    Object? stock = null,
     Object? description = freezed,
-    Object? specifications = freezed,
     Object? batteryCapacity = freezed,
     Object? maxSpeed = freezed,
   }) {
@@ -102,17 +99,13 @@ class _$BikeModelCopyWithImpl<$Res, $Val extends BikeModel>
                 ? _value.range
                 : range // ignore: cast_nullable_to_non_nullable
                       as int,
-            isAvailable: null == isAvailable
-                ? _value.isAvailable
-                : isAvailable // ignore: cast_nullable_to_non_nullable
-                      as bool,
+            stock: null == stock
+                ? _value.stock
+                : stock // ignore: cast_nullable_to_non_nullable
+                      as int,
             description: freezed == description
                 ? _value.description
                 : description // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            specifications: freezed == specifications
-                ? _value.specifications
-                : specifications // ignore: cast_nullable_to_non_nullable
                       as String?,
             batteryCapacity: freezed == batteryCapacity
                 ? _value.batteryCapacity
@@ -142,9 +135,8 @@ abstract class _$$BikeModelImplCopyWith<$Res>
     String model,
     String photoUrl,
     int range,
-    bool isAvailable,
+    int stock,
     String? description,
-    String? specifications,
     double? batteryCapacity,
     double? maxSpeed,
   });
@@ -168,9 +160,8 @@ class __$$BikeModelImplCopyWithImpl<$Res>
     Object? model = null,
     Object? photoUrl = null,
     Object? range = null,
-    Object? isAvailable = null,
+    Object? stock = null,
     Object? description = freezed,
-    Object? specifications = freezed,
     Object? batteryCapacity = freezed,
     Object? maxSpeed = freezed,
   }) {
@@ -192,17 +183,13 @@ class __$$BikeModelImplCopyWithImpl<$Res>
             ? _value.range
             : range // ignore: cast_nullable_to_non_nullable
                   as int,
-        isAvailable: null == isAvailable
-            ? _value.isAvailable
-            : isAvailable // ignore: cast_nullable_to_non_nullable
-                  as bool,
+        stock: null == stock
+            ? _value.stock
+            : stock // ignore: cast_nullable_to_non_nullable
+                  as int,
         description: freezed == description
             ? _value.description
             : description // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        specifications: freezed == specifications
-            ? _value.specifications
-            : specifications // ignore: cast_nullable_to_non_nullable
                   as String?,
         batteryCapacity: freezed == batteryCapacity
             ? _value.batteryCapacity
@@ -225,9 +212,8 @@ class _$BikeModelImpl implements _BikeModel {
     required this.model,
     required this.photoUrl,
     required this.range,
-    required this.isAvailable,
+    required this.stock,
     this.description,
-    this.specifications,
     this.batteryCapacity,
     this.maxSpeed,
   });
@@ -244,11 +230,9 @@ class _$BikeModelImpl implements _BikeModel {
   @override
   final int range;
   @override
-  final bool isAvailable;
+  final int stock;
   @override
   final String? description;
-  @override
-  final String? specifications;
   @override
   final double? batteryCapacity;
   @override
@@ -256,7 +240,7 @@ class _$BikeModelImpl implements _BikeModel {
 
   @override
   String toString() {
-    return 'BikeModel(id: $id, model: $model, photoUrl: $photoUrl, range: $range, isAvailable: $isAvailable, description: $description, specifications: $specifications, batteryCapacity: $batteryCapacity, maxSpeed: $maxSpeed)';
+    return 'BikeModel(id: $id, model: $model, photoUrl: $photoUrl, range: $range, stock: $stock, description: $description, batteryCapacity: $batteryCapacity, maxSpeed: $maxSpeed)';
   }
 
   @override
@@ -269,12 +253,9 @@ class _$BikeModelImpl implements _BikeModel {
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl) &&
             (identical(other.range, range) || other.range == range) &&
-            (identical(other.isAvailable, isAvailable) ||
-                other.isAvailable == isAvailable) &&
+            (identical(other.stock, stock) || other.stock == stock) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.specifications, specifications) ||
-                other.specifications == specifications) &&
             (identical(other.batteryCapacity, batteryCapacity) ||
                 other.batteryCapacity == batteryCapacity) &&
             (identical(other.maxSpeed, maxSpeed) ||
@@ -289,9 +270,8 @@ class _$BikeModelImpl implements _BikeModel {
     model,
     photoUrl,
     range,
-    isAvailable,
+    stock,
     description,
-    specifications,
     batteryCapacity,
     maxSpeed,
   );
@@ -316,9 +296,8 @@ abstract class _BikeModel implements BikeModel {
     required final String model,
     required final String photoUrl,
     required final int range,
-    required final bool isAvailable,
+    required final int stock,
     final String? description,
-    final String? specifications,
     final double? batteryCapacity,
     final double? maxSpeed,
   }) = _$BikeModelImpl;
@@ -335,11 +314,9 @@ abstract class _BikeModel implements BikeModel {
   @override
   int get range;
   @override
-  bool get isAvailable;
+  int get stock;
   @override
   String? get description;
-  @override
-  String? get specifications;
   @override
   double? get batteryCapacity;
   @override

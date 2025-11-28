@@ -10,9 +10,8 @@ class BikeModel with _$BikeModel {
     required String model,
     required String photoUrl,
     required int range,
-    required bool isAvailable,
+    required int stock,
     String? description,
-    String? specifications,
     double? batteryCapacity,
     double? maxSpeed,
   }) = _BikeModel;

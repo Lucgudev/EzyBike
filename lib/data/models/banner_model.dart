@@ -7,7 +7,7 @@ part 'banner_model.g.dart';
 class BannerModel with _$BannerModel {
   const factory BannerModel({
     required String id,
-    required String imageUrl,
+    required String photoUrl,
     String? title,
     String? description,
     String? actionUrl,

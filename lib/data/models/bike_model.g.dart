@@ -12,9 +12,8 @@ _$BikeModelImpl _$$BikeModelImplFromJson(Map<String, dynamic> json) =>
       model: json['model'] as String,
       photoUrl: json['photoUrl'] as String,
       range: (json['range'] as num).toInt(),
-      isAvailable: json['isAvailable'] as bool,
+      stock: (json['stock'] as num).toInt(),
       description: json['description'] as String?,
-      specifications: json['specifications'] as String?,
       batteryCapacity: (json['batteryCapacity'] as num?)?.toDouble(),
       maxSpeed: (json['maxSpeed'] as num?)?.toDouble(),
     );
@@ -25,9 +24,8 @@ Map<String, dynamic> _$$BikeModelImplToJson(_$BikeModelImpl instance) =>
       'model': instance.model,
       'photoUrl': instance.photoUrl,
       'range': instance.range,
-      'isAvailable': instance.isAvailable,
+      'stock': instance.stock,
       'description': instance.description,
-      'specifications': instance.specifications,
       'batteryCapacity': instance.batteryCapacity,
       'maxSpeed': instance.maxSpeed,
     };
