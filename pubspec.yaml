@@ -113,3 +113,19 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  fonts:
+    - family: Figtree
+      fonts:
+        - asset: assets/fonts/figtree/Figtree-Regular.ttf
+        - asset: assets/fonts/figtree/Figtree-Light.ttf
+          weight: 300
+        - asset: assets/fonts/figtree/Figtree-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/figtree/Figtree-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/figtree/Figtree-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/figtree/Figtree-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic

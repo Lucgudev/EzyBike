@@ -4,6 +4,7 @@ import 'package:sample_bike_customer_app/core/router/router.dart';
 
 import 'core/provider/global_provider.dart';
 import 'core/router/routes.dart';
+import 'core/theme/app_theme.dart';
 
 class SampleBikeCustomerApp extends ConsumerStatefulWidget {
   const SampleBikeCustomerApp({super.key});
@@ -29,6 +30,7 @@ class _SampleBikeCustomerAppState extends ConsumerState<SampleBikeCustomerApp> {
       navigatorKey: _navigatorKey,
       routes: Router.generateRoute(),
       initialRoute: Routes.rootPage,
+      theme: AppTheme.lightTheme,
     );
   }
 }
