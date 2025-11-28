@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/remote/supabase_auth.dart';
 import '../models/user_model.dart';
@@ -9,7 +8,7 @@ part 'auth_repository_impl.g.dart';
 
 @riverpod
 SupabaseAuthDataSource supabaseAuthDataSource(Ref ref) {
-  return SupabaseAuthDataSource(Supabase.instance.client);
+  return SupabaseAuthDataSource();
 }
 
 @riverpod

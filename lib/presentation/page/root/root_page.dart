@@ -26,7 +26,10 @@ class _RootPageState extends ConsumerState<RootPage> {
                   .read(appNavigatorProvider)
                   .pushReplacementNamedWithResult(Routes.loginPage);
             } else {
-              // TODO: Navigate to homepage
+              // User has session, navigate to homepage
+              ref
+                  .read(appNavigatorProvider)
+                  .pushReplacementNamedWithResult(Routes.homePage);
             }
           },
           loading: () {

@@ -79,7 +79,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   backgroundColor: Colors.green,
                 ),
               );
-              // TODO: Navigate to homepage after successful login
+              // Navigate to homepage after successful login
+              ref
+                  .read(appNavigatorProvider)
+                  .pushReplacementNamedWithResult(Routes.homePage);
             }
           },
         );

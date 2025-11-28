@@ -2,16 +2,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/user_model.dart';
 
 class SupabaseAuthDataSource {
-  final SupabaseClient _supabaseClient;
-
-  SupabaseAuthDataSource(this._supabaseClient);
+  SupabaseAuthDataSource();
 
   Future<UserModel> signIn({
     required String email,
     required String password,
   }) async {
     try {
-      final response = await _supabaseClient.auth.signInWithPassword(
+      final response = await Supabase.instance.client.auth.signInWithPassword(
         email: email,
         password: password,
       );
@@ -43,7 +41,7 @@ class SupabaseAuthDataSource {
     required String password,
   }) async {
     try {
-      final response = await _supabaseClient.auth.signUp(
+      final response = await Supabase.instance.client.auth.signUp(
         email: email,
         password: password,
       );
@@ -72,7 +70,7 @@ class SupabaseAuthDataSource {
 
   Future<void> signOut() async {
     try {
-      await _supabaseClient.auth.signOut();
+      await Supabase.instance.client.auth.signOut();
     } on AuthException catch (e) {
       throw Exception('Sign out failed: ${e.message}');
     } catch (e) {
@@ -82,7 +80,7 @@ class SupabaseAuthDataSource {
 
   Future<UserModel?> getCurrentUser() async {
     try {
-      final user = _supabaseClient.auth.currentUser;
+      final user = Supabase.instance.client.auth.currentUser;
 
       if (user == null) {
         return null;

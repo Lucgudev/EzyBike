@@ -9,11 +9,10 @@ This page consist of form, Email and Password form, also button, the button is e
 This page consist of form Email, Password and Re-Type Password and also button with Text Register. The button is enabled when the validation is valid.
 
 **Home page**
-Home page is consist of List with segment
-First segment is profile
-Second segment is promotional Banner
-Third segment is Rental Packages (plan, price/day-week-month, terms)
-Fourth segment is List of Bikes (model, photo, range, availability)
+Home Page is consist of 3 tabs
+First tab is home, is list of promo, package and available bike
+Secodn tab is order
+Third tab is profile
 
 **Bike Detail page**
 Show Bike Detail and there will be button "I'm interested to Rent"

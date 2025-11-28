@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
+import '../../../core/router/routes.dart';
 import 'register_page_view_model.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
@@ -79,7 +81,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   backgroundColor: Colors.green,
                 ),
               );
-              // TODO: Navigate to homepage after successful registration
+              // Navigate to homepage after successful registration
+              ref
+                  .read(appNavigatorProvider)
+                  .pushReplacementNamedWithResult(Routes.homePage);
             }
           },
         );
