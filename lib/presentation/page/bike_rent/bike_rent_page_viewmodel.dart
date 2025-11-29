@@ -11,7 +11,7 @@ part 'bike_rent_page_viewmodel.g.dart';
 @riverpod
 class BikeRentPageViewModel extends _$BikeRentPageViewModel {
   @override
-  BikeRentPageState build() {
+  AsyncValue<BikeRentPageState> build() {
     // Watch all form providers
     final selectedDate = ref.watch(selectedStartDateProvider);
     final selectedPickupLocation = ref.watch(selectedPickupLocationProvider);
@@ -26,7 +26,7 @@ class BikeRentPageViewModel extends _$BikeRentPageViewModel {
       phoneNumber: phoneNumber,
     );
 
-    return BikeRentPageState(isFormValid: isFormValid);
+    return AsyncValue.data(BikeRentPageState(isFormValid: isFormValid));
   }
 
   bool _validateForm({
@@ -38,11 +38,18 @@ class BikeRentPageViewModel extends _$BikeRentPageViewModel {
     return selectedDate != null &&
         selectedPickupLocation &&
         selectedDuration &&
-        phoneNumber.isNotEmpty;
+        _isValidPhoneNumber(phoneNumber);
+  }
+
+  bool _isValidPhoneNumber(String phoneNumber) {
+    return phoneNumber.trim().isNotEmpty;
   }
 
   Future<void> submitRent(BikeModel bike) async {
-    try {
+    // Set loading state
+    state = const AsyncValue.loading();
+
+    state = await AsyncValue.guard(() async {
       // Get current user
       final authRepo = ref.read(authRepositoryProvider);
       final currentUser = await authRepo.getCurrentUser();
@@ -57,10 +64,21 @@ class BikeRentPageViewModel extends _$BikeRentPageViewModel {
       final selectedDuration = ref.read(selectedRentDurationProvider);
       final phoneNumber = ref.read(phoneNumberProvider);
 
-      if (selectedDate == null ||
-          selectedPickupLocation == null ||
-          selectedDuration == null) {
-        throw Exception('Please fill all required fields');
+      // Validate all fields
+      if (selectedDate == null) {
+        throw Exception('Please select a start date');
+      }
+
+      if (selectedPickupLocation == null) {
+        throw Exception('Please select a pickup location');
+      }
+
+      if (selectedDuration == null) {
+        throw Exception('Please select a duration');
+      }
+
+      if (!_isValidPhoneNumber(phoneNumber)) {
+        throw Exception('Please enter a valid phone number');
       }
 
       // Create rent request
@@ -77,8 +95,9 @@ class BikeRentPageViewModel extends _$BikeRentPageViewModel {
       // Submit rent request
       final orderRepo = ref.read(orderRepositoryProvider);
       await orderRepo.createBikeRent(request);
-    } catch (e) {
-      rethrow;
-    }
+
+      // Return updated state with form validity
+      return BikeRentPageState(isFormValid: false);
+    });
   }
 }

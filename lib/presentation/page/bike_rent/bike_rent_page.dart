@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
 import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
+import 'bike_rent_page_state.dart';
 import 'bike_rent_page_viewmodel.dart';
 import 'provider/bike_rent_form_provider.dart';
 import 'widget/bike_info_card/bike_info_card_widget.dart';
@@ -39,7 +40,39 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
   @override
   Widget build(BuildContext context) {
     final bike = ModalRoute.of(context)!.settings.arguments as BikeModel;
-    final pageState = ref.watch(bikeRentPageViewModelProvider);
+    final state = ref.watch(bikeRentPageViewModelProvider);
+
+    // Listen for state changes
+    ref.listen<AsyncValue<BikeRentPageState>>(
+      bikeRentPageViewModelProvider,
+      (previous, next) {
+        next.when(
+          data: (state) {
+            // Check if we just completed a successful submission
+            if (previous?.isLoading == true && !next.isLoading) {
+              // Clear phone controller
+              _phoneController.clear();
+              // Navigate to success page
+              ref
+                  .read(appNavigatorProvider)
+                  .pushReplacementNamedWithResult(
+                    Routes.bikeRentSuccessPage,
+                  );
+            }
+          },
+          loading: () {},
+          error: (error, stackTrace) {
+            // Show error message
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(error.toString().replaceAll('Exception: ', '')),
+                backgroundColor: Colors.red,
+              ),
+            );
+          },
+        );
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -79,19 +112,37 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
-                    onPressed: pageState.isFormValid ? _handleRentSubmit : null,
+                    onPressed: state.maybeWhen(
+                      data: (data) => data.isFormValid && !state.isLoading
+                          ? () async {
+                              await ref
+                                  .read(bikeRentPageViewModelProvider.notifier)
+                                  .submitRent(bike);
+                            }
+                          : null,
+                      orElse: () => null,
+                    ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
-                    child: const Text(
-                      'Rent',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: state.isLoading
+                        ? const SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            'Rent',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -101,55 +152,5 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
         ),
       ),
     );
-  }
-
-  Future<void> _handleRentSubmit() async {
-    final bike = ModalRoute.of(context)!.settings.arguments as BikeModel;
-
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
-
-    // Show loading dialog
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
-    try {
-      // Submit rent
-      await ref.read(bikeRentPageViewModelProvider.notifier).submitRent(bike);
-
-      // Close loading dialog
-      if (mounted) Navigator.of(context).pop();
-
-      // Clear phone controller
-      _phoneController.clear();
-
-      // Navigate to success page
-      if (mounted) {
-        ref
-            .read(appNavigatorProvider)
-            .pushReplacementNamedWithResult(
-              Routes.bikeRentSuccessPage,
-            );
-      }
-    } catch (e) {
-      // Close loading dialog
-      if (mounted) Navigator.of(context).pop();
-
-      // Show error message
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Failed to submit rent: ${e.toString()}'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
   }
 }
