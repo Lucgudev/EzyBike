@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
+import 'package:sample_bike_customer_app/core/helper/currency_helper.dart';
 import 'package:sample_bike_customer_app/core/provider/global_provider.dart';
 import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
@@ -170,8 +171,17 @@ class ListBikeWidget extends ConsumerWidget {
                           ),
                           const SizedBox(height: 4),
                         ],
+                        // Price
+                        const SizedBox(height: 8),
+                        Text(
+                          '${CurrencyHelper.formatRupiah(bike.rentalPricePerDay)}/day',
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
                       ],
                     ),
+                    const SizedBox(height: 8),
                     // Stock Badge
                     StockBadgeWidget(stock: bike.stock),
                   ],
