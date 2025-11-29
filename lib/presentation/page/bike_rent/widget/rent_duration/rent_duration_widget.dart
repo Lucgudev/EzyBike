@@ -39,8 +39,8 @@ class RentDurationWidget extends ConsumerWidget {
                 Text(
                   'Select Duration',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const Spacer(),
                 IconButton(
@@ -74,10 +74,9 @@ class RentDurationWidget extends ConsumerWidget {
                       leading: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primaryContainer
-                              .withOpacity(0.5),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primaryContainer.withOpacity(0.5),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -88,8 +87,8 @@ class RentDurationWidget extends ConsumerWidget {
                       title: Text(
                         duration.duration,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.w500,
-                            ),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios,
@@ -99,7 +98,7 @@ class RentDurationWidget extends ConsumerWidget {
                       onTap: () {
                         ref
                             .read(selectedRentDurationProvider.notifier)
-                            .setDuration(duration.value);
+                            .setDuration(duration);
                         Navigator.pop(context);
                       },
                     );
@@ -133,8 +132,8 @@ class RentDurationWidget extends ConsumerWidget {
                         error.toString(),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Colors.grey[600],
-                            ),
+                          color: Colors.grey[600],
+                        ),
                       ),
                     ],
                   ),

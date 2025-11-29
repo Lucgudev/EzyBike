@@ -1,5 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
+import 'package:sample_bike_customer_app/data/models/bike_rent_request_model.dart';
+import 'package:sample_bike_customer_app/data/repositories/auth_repository_impl.dart';
+import 'package:sample_bike_customer_app/data/repositories/order_repository_impl.dart';
 import 'bike_rent_page_state.dart';
 import 'provider/bike_rent_form_provider.dart';
 
@@ -39,15 +42,41 @@ class BikeRentPageViewModel extends _$BikeRentPageViewModel {
   }
 
   Future<void> submitRent(BikeModel bike) async {
-    // TODO: Implement rent submission
     try {
-      // Get form values
-      // final selectedDate = ref.read(selectedStartDateProvider);
-      // final selectedPickupLocation = ref.read(selectedPickupLocationProvider);
-      // final selectedDuration = ref.read(selectedRentDurationProvider);
-      // final phoneNumber = ref.read(phoneNumberProvider);
+      // Get current user
+      final authRepo = ref.read(authRepositoryProvider);
+      final currentUser = await authRepo.getCurrentUser();
 
-      // TODO: Call repository to submit rent request
+      if (currentUser == null) {
+        throw Exception('User not authenticated');
+      }
+
+      // Get form values
+      final selectedDate = ref.read(selectedStartDateProvider);
+      final selectedPickupLocation = ref.read(selectedPickupLocationProvider);
+      final selectedDuration = ref.read(selectedRentDurationProvider);
+      final phoneNumber = ref.read(phoneNumberProvider);
+
+      if (selectedDate == null ||
+          selectedPickupLocation == null ||
+          selectedDuration == null) {
+        throw Exception('Please fill all required fields');
+      }
+
+      // Create rent request
+      final request = BikeRentRequestModel(
+        startDate: selectedDate,
+        duration: selectedDuration.id,
+        userId: currentUser.id,
+        email: currentUser.email,
+        bikeId: bike.id,
+        phoneNumber: phoneNumber,
+        pickupAreaId: selectedPickupLocation.id,
+      );
+
+      // Submit rent request
+      final orderRepo = ref.read(orderRepositoryProvider);
+      await orderRepo.createBikeRent(request);
     } catch (e) {
       rethrow;
     }

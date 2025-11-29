@@ -27,12 +27,15 @@ final selectedPickupLocationProvider =
 
 typedef _$SelectedPickupLocation = AutoDisposeNotifier<PickupLocationModel?>;
 String _$selectedRentDurationHash() =>
-    r'93513898ef6efd2bc2c9658117a38627c2f8d7a5';
+    r'aa7832aca61f21a9048a9f2b71bdb6c665687f9b';
 
 /// See also [SelectedRentDuration].
 @ProviderFor(SelectedRentDuration)
 final selectedRentDurationProvider =
-    AutoDisposeNotifierProvider<SelectedRentDuration, int?>.internal(
+    AutoDisposeNotifierProvider<
+      SelectedRentDuration,
+      RentDurationModel?
+    >.internal(
       SelectedRentDuration.new,
       name: r'selectedRentDurationProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -42,7 +45,7 @@ final selectedRentDurationProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$SelectedRentDuration = AutoDisposeNotifier<int?>;
+typedef _$SelectedRentDuration = AutoDisposeNotifier<RentDurationModel?>;
 String _$selectedStartDateHash() => r'240fdce84697240efc2a4a0cacea867e65747392';
 
 /// See also [SelectedStartDate].

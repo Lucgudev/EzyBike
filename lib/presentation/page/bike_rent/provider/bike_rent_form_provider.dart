@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sample_bike_customer_app/data/models/pickup_location_model.dart';
+import 'package:sample_bike_customer_app/data/models/rent_duration_model.dart';
 
 part 'bike_rent_form_provider.g.dart';
 
@@ -22,12 +23,12 @@ class SelectedPickupLocation extends _$SelectedPickupLocation {
 @riverpod
 class SelectedRentDuration extends _$SelectedRentDuration {
   @override
-  int? build() {
+  RentDurationModel? build() {
     return null;
   }
 
-  void setDuration(int? duration) {
-    state = duration;
+  void setDuration(RentDurationModel? rentDuration) {
+    state = rentDuration;
   }
 
   void clear() {

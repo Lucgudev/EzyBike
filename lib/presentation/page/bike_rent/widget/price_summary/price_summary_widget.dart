@@ -33,14 +33,14 @@ class PriceSummaryWidget extends ConsumerWidget {
               Text(
                 'Price per day',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey[600],
-                    ),
+                  color: Colors.grey[600],
+                ),
               ),
               Text(
                 CurrencyHelper.formatRupiah(bike.rentalPricePerDay),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ],
           ),
@@ -52,14 +52,14 @@ class PriceSummaryWidget extends ConsumerWidget {
                 Text(
                   'Duration',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.grey[600],
-                      ),
+                    color: Colors.grey[600],
+                  ),
                 ),
                 Text(
-                  '$selectedDuration days',
+                  selectedDuration.duration,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),
@@ -70,16 +70,17 @@ class PriceSummaryWidget extends ConsumerWidget {
                 Text(
                   'Total Price',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   CurrencyHelper.formatRupiah(
-                      bike.rentalPricePerDay * selectedDuration),
+                    bike.rentalPricePerDay * selectedDuration.value,
+                  ),
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
               ],
             ),

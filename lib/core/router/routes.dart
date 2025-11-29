@@ -5,4 +5,5 @@ mixin Routes {
   static const String homePage = '/homePage';
   static const String bikeDetailPage = '/bikeDetailPage';
   static const String bikeRentPage = '/bikeRentPage';
+  static const String bikeRentSuccessPage = '/bikeRentSuccessPage';
 }

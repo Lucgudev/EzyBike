@@ -7,7 +7,7 @@ part 'bike_rent_request_model.g.dart';
 class BikeRentRequestModel with _$BikeRentRequestModel {
   const factory BikeRentRequestModel({
     @JsonKey(name: 'start_date') required DateTime startDate,
-    required String duration,
+    @JsonKey(name: 'duration_id') required String duration,
     @JsonKey(name: 'user_id') required String userId,
     required String email,
     @JsonKey(name: 'bike_id') required int bikeId,

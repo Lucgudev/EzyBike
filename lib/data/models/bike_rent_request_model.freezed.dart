@@ -23,6 +23,7 @@ BikeRentRequestModel _$BikeRentRequestModelFromJson(Map<String, dynamic> json) {
 mixin _$BikeRentRequestModel {
   @JsonKey(name: 'start_date')
   DateTime get startDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'duration_id')
   String get duration => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
@@ -53,7 +54,7 @@ abstract class $BikeRentRequestModelCopyWith<$Res> {
   @useResult
   $Res call({
     @JsonKey(name: 'start_date') DateTime startDate,
-    String duration,
+    @JsonKey(name: 'duration_id') String duration,
     @JsonKey(name: 'user_id') String userId,
     String email,
     @JsonKey(name: 'bike_id') int bikeId,
@@ -135,7 +136,7 @@ abstract class _$$BikeRentRequestModelImplCopyWith<$Res>
   @useResult
   $Res call({
     @JsonKey(name: 'start_date') DateTime startDate,
-    String duration,
+    @JsonKey(name: 'duration_id') String duration,
     @JsonKey(name: 'user_id') String userId,
     String email,
     @JsonKey(name: 'bike_id') int bikeId,
@@ -206,7 +207,7 @@ class __$$BikeRentRequestModelImplCopyWithImpl<$Res>
 class _$BikeRentRequestModelImpl implements _BikeRentRequestModel {
   const _$BikeRentRequestModelImpl({
     @JsonKey(name: 'start_date') required this.startDate,
-    required this.duration,
+    @JsonKey(name: 'duration_id') required this.duration,
     @JsonKey(name: 'user_id') required this.userId,
     required this.email,
     @JsonKey(name: 'bike_id') required this.bikeId,
@@ -221,6 +222,7 @@ class _$BikeRentRequestModelImpl implements _BikeRentRequestModel {
   @JsonKey(name: 'start_date')
   final DateTime startDate;
   @override
+  @JsonKey(name: 'duration_id')
   final String duration;
   @override
   @JsonKey(name: 'user_id')
@@ -294,7 +296,7 @@ class _$BikeRentRequestModelImpl implements _BikeRentRequestModel {
 abstract class _BikeRentRequestModel implements BikeRentRequestModel {
   const factory _BikeRentRequestModel({
     @JsonKey(name: 'start_date') required final DateTime startDate,
-    required final String duration,
+    @JsonKey(name: 'duration_id') required final String duration,
     @JsonKey(name: 'user_id') required final String userId,
     required final String email,
     @JsonKey(name: 'bike_id') required final int bikeId,
@@ -309,6 +311,7 @@ abstract class _BikeRentRequestModel implements BikeRentRequestModel {
   @JsonKey(name: 'start_date')
   DateTime get startDate;
   @override
+  @JsonKey(name: 'duration_id')
   String get duration;
   @override
   @JsonKey(name: 'user_id')
