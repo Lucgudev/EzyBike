@@ -33,6 +33,8 @@ mixin _$BikeModel {
   double? get batteryCapacity => throw _privateConstructorUsedError;
   @JsonKey(name: 'max_speed')
   double? get maxSpeed => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rental_price_per_day')
+  num get rentalPricePerDay => throw _privateConstructorUsedError;
 
   /// Serializes this BikeModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,6 +61,7 @@ abstract class $BikeModelCopyWith<$Res> {
     String? color,
     @JsonKey(name: 'battery_capacity') double? batteryCapacity,
     @JsonKey(name: 'max_speed') double? maxSpeed,
+    @JsonKey(name: 'rental_price_per_day') num rentalPricePerDay,
   });
 }
 
@@ -86,6 +89,7 @@ class _$BikeModelCopyWithImpl<$Res, $Val extends BikeModel>
     Object? color = freezed,
     Object? batteryCapacity = freezed,
     Object? maxSpeed = freezed,
+    Object? rentalPricePerDay = null,
   }) {
     return _then(
       _value.copyWith(
@@ -125,6 +129,10 @@ class _$BikeModelCopyWithImpl<$Res, $Val extends BikeModel>
                 ? _value.maxSpeed
                 : maxSpeed // ignore: cast_nullable_to_non_nullable
                       as double?,
+            rentalPricePerDay: null == rentalPricePerDay
+                ? _value.rentalPricePerDay
+                : rentalPricePerDay // ignore: cast_nullable_to_non_nullable
+                      as num,
           )
           as $Val,
     );
@@ -150,6 +158,7 @@ abstract class _$$BikeModelImplCopyWith<$Res>
     String? color,
     @JsonKey(name: 'battery_capacity') double? batteryCapacity,
     @JsonKey(name: 'max_speed') double? maxSpeed,
+    @JsonKey(name: 'rental_price_per_day') num rentalPricePerDay,
   });
 }
 
@@ -176,6 +185,7 @@ class __$$BikeModelImplCopyWithImpl<$Res>
     Object? color = freezed,
     Object? batteryCapacity = freezed,
     Object? maxSpeed = freezed,
+    Object? rentalPricePerDay = null,
   }) {
     return _then(
       _$BikeModelImpl(
@@ -215,6 +225,10 @@ class __$$BikeModelImplCopyWithImpl<$Res>
             ? _value.maxSpeed
             : maxSpeed // ignore: cast_nullable_to_non_nullable
                   as double?,
+        rentalPricePerDay: null == rentalPricePerDay
+            ? _value.rentalPricePerDay
+            : rentalPricePerDay // ignore: cast_nullable_to_non_nullable
+                  as num,
       ),
     );
   }
@@ -233,6 +247,7 @@ class _$BikeModelImpl implements _BikeModel {
     this.color,
     @JsonKey(name: 'battery_capacity') this.batteryCapacity,
     @JsonKey(name: 'max_speed') this.maxSpeed,
+    @JsonKey(name: 'rental_price_per_day') required this.rentalPricePerDay,
   });
 
   factory _$BikeModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -259,10 +274,13 @@ class _$BikeModelImpl implements _BikeModel {
   @override
   @JsonKey(name: 'max_speed')
   final double? maxSpeed;
+  @override
+  @JsonKey(name: 'rental_price_per_day')
+  final num rentalPricePerDay;
 
   @override
   String toString() {
-    return 'BikeModel(id: $id, model: $model, photoUrl: $photoUrl, range: $range, stock: $stock, description: $description, color: $color, batteryCapacity: $batteryCapacity, maxSpeed: $maxSpeed)';
+    return 'BikeModel(id: $id, model: $model, photoUrl: $photoUrl, range: $range, stock: $stock, description: $description, color: $color, batteryCapacity: $batteryCapacity, maxSpeed: $maxSpeed, rentalPricePerDay: $rentalPricePerDay)';
   }
 
   @override
@@ -282,7 +300,9 @@ class _$BikeModelImpl implements _BikeModel {
             (identical(other.batteryCapacity, batteryCapacity) ||
                 other.batteryCapacity == batteryCapacity) &&
             (identical(other.maxSpeed, maxSpeed) ||
-                other.maxSpeed == maxSpeed));
+                other.maxSpeed == maxSpeed) &&
+            (identical(other.rentalPricePerDay, rentalPricePerDay) ||
+                other.rentalPricePerDay == rentalPricePerDay));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -298,6 +318,7 @@ class _$BikeModelImpl implements _BikeModel {
     color,
     batteryCapacity,
     maxSpeed,
+    rentalPricePerDay,
   );
 
   /// Create a copy of BikeModel
@@ -325,6 +346,7 @@ abstract class _BikeModel implements BikeModel {
     final String? color,
     @JsonKey(name: 'battery_capacity') final double? batteryCapacity,
     @JsonKey(name: 'max_speed') final double? maxSpeed,
+    @JsonKey(name: 'rental_price_per_day') required final num rentalPricePerDay,
   }) = _$BikeModelImpl;
 
   factory _BikeModel.fromJson(Map<String, dynamic> json) =
@@ -351,6 +373,9 @@ abstract class _BikeModel implements BikeModel {
   @override
   @JsonKey(name: 'max_speed')
   double? get maxSpeed;
+  @override
+  @JsonKey(name: 'rental_price_per_day')
+  num get rentalPricePerDay;
 
   /// Create a copy of BikeModel
   /// with the given fields replaced by the non-null parameter values.

@@ -17,6 +17,7 @@ _$BikeModelImpl _$$BikeModelImplFromJson(Map<String, dynamic> json) =>
       color: json['color'] as String?,
       batteryCapacity: (json['battery_capacity'] as num?)?.toDouble(),
       maxSpeed: (json['max_speed'] as num?)?.toDouble(),
+      rentalPricePerDay: json['rental_price_per_day'] as num,
     );
 
 Map<String, dynamic> _$$BikeModelImplToJson(_$BikeModelImpl instance) =>
@@ -30,4 +31,5 @@ Map<String, dynamic> _$$BikeModelImplToJson(_$BikeModelImpl instance) =>
       'color': instance.color,
       'battery_capacity': instance.batteryCapacity,
       'max_speed': instance.maxSpeed,
+      'rental_price_per_day': instance.rentalPricePerDay,
     };

@@ -15,6 +15,7 @@ class BikeModel with _$BikeModel {
     String? color,
     @JsonKey(name: 'battery_capacity') double? batteryCapacity,
     @JsonKey(name: 'max_speed') double? maxSpeed,
+    @JsonKey(name: 'rental_price_per_day') required num rentalPricePerDay,
   }) = _BikeModel;
 
   factory BikeModel.fromJson(Map<String, dynamic> json) =>

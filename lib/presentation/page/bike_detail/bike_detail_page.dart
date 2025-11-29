@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
+import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
 import 'widget/bike_detail_app_bar.dart';
 import 'widget/bike_detail_header.dart';
@@ -38,13 +40,17 @@ class BikeDetailPage extends ConsumerWidget {
               ),
             ],
           ),
-          _buildBottomButton(context, bike),
+          _buildBottomButton(context, ref, bike),
         ],
       ),
     );
   }
 
-  Widget _buildBottomButton(BuildContext context, BikeModel bike) {
+  Widget _buildBottomButton(
+    BuildContext context,
+    WidgetRef ref,
+    BikeModel bike,
+  ) {
     final isOutOfStock = bike.stock <= 0;
 
     return Positioned(
@@ -75,7 +81,7 @@ class BikeDetailPage extends ConsumerWidget {
               onPressed: isOutOfStock
                   ? null
                   : () {
-                      _handleRentInterest(context, bike);
+                      _handleRentInterest(ref, bike);
                     },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -96,14 +102,12 @@ class BikeDetailPage extends ConsumerWidget {
     );
   }
 
-  void _handleRentInterest(BuildContext context, BikeModel bike) {
-    // TODO: Implement rent interest logic
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Interest registered for ${bike.model}'),
-        backgroundColor: Colors.green,
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+  void _handleRentInterest(WidgetRef ref, BikeModel bike) {
+    ref
+        .read(appNavigatorProvider)
+        .pushNamedWithResult(
+          Routes.bikeRentPage,
+          arguments: bike,
+        );
   }
 }

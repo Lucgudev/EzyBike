@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
+import 'package:sample_bike_customer_app/core/helper/currency_helper.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
 import 'package:sample_bike_customer_app/presentation/page/home/widget/list_bike/stock_badge_widget.dart';
 
@@ -62,6 +63,33 @@ class BikeDetailHeader extends StatelessWidget {
               ],
             ),
           ],
+          const SizedBox(height: 16),
+          // Rental Price
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primaryContainer,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  CurrencyHelper.formatRupiah(bike.rentalPricePerDay),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                ),
+                Text(
+                  ' /day',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
