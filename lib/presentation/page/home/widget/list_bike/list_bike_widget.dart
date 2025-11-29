@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
+import 'package:sample_bike_customer_app/core/provider/global_provider.dart';
+import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
 import 'list_bike_widget_viewmodel.dart';
 import 'stock_badge_widget.dart';
@@ -44,7 +46,7 @@ class ListBikeWidget extends ConsumerWidget {
                 itemCount: state.bikes.length,
                 itemBuilder: (context, index) {
                   final bike = state.bikes[index];
-                  return _buildBikeCard(context, bike);
+                  return _buildBikeCard(context, ref, bike);
                 },
               ),
             ),
@@ -61,7 +63,7 @@ class ListBikeWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildBikeCard(BuildContext context, BikeModel bike) {
+  Widget _buildBikeCard(BuildContext context, WidgetRef ref, BikeModel bike) {
     final isOutOfStock = bike.stock <= 0;
 
     return Opacity(
@@ -76,7 +78,10 @@ class ListBikeWidget extends ConsumerWidget {
           onTap: isOutOfStock
               ? null
               : () {
-                  // TODO: Navigate to bike detail page
+                  ref.read(navigatorKeyProvider).currentState?.pushNamed(
+                        Routes.bikeDetailPage,
+                        arguments: bike,
+                      );
                 },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
