@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
+import 'bike_rent_page_viewmodel.dart';
+import 'provider/bike_rent_form_provider.dart';
+import 'widget/bike_pickup_location/bike_pickup_location_widget.dart';
+import 'widget/price_summary/price_summary_widget.dart';
+import 'widget/rent_duration/rent_duration_widget.dart';
 
 class BikeRentPage extends ConsumerStatefulWidget {
   const BikeRentPage({super.key});
@@ -14,9 +19,13 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
   final _formKey = GlobalKey<FormState>();
   final _phoneController = TextEditingController();
 
-  DateTime? _selectedDate;
-  String? _selectedPickupLocation;
-  int? _selectedDuration;
+  @override
+  void initState() {
+    super.initState();
+    _phoneController.addListener(() {
+      ref.read(phoneNumberProvider.notifier).setPhoneNumber(_phoneController.text);
+    });
+  }
 
   @override
   void dispose() {
@@ -27,6 +36,7 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
   @override
   Widget build(BuildContext context) {
     final bike = ModalRoute.of(context)!.settings.arguments as BikeModel;
+    final pageState = ref.watch(bikeRentPageViewModelProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -67,6 +77,10 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
 
                 // Duration Field
                 _buildDurationField(context),
+                const SizedBox(height: 24),
+
+                // Price Summary
+                PriceSummaryWidget(bike: bike),
                 const SizedBox(height: 32),
 
                 // Rent Button
@@ -74,7 +88,7 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
                   width: double.infinity,
                   height: 56,
                   child: ElevatedButton(
-                    onPressed: _handleRentSubmit,
+                    onPressed: pageState.isFormValid ? _handleRentSubmit : null,
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
@@ -183,6 +197,8 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
   }
 
   Widget _buildStartDateField(BuildContext context) {
+    final selectedDate = ref.watch(selectedStartDateProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -207,11 +223,11 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
                 Icon(Icons.calendar_today, color: Colors.grey[600]),
                 const SizedBox(width: 12),
                 Text(
-                  _selectedDate == null
+                  selectedDate == null
                       ? 'Select start date'
-                      : '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}',
+                      : '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: _selectedDate == null
+                        color: selectedDate == null
                             ? Colors.grey[600]
                             : Colors.black,
                       ),
@@ -225,6 +241,8 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
   }
 
   Widget _buildPickupLocationField(BuildContext context) {
+    final selectedPickupLocation = ref.watch(selectedPickupLocationProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -250,9 +268,9 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    _selectedPickupLocation ?? 'Select pickup location',
+                    selectedPickupLocation?.name ?? 'Select pickup location',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: _selectedPickupLocation == null
+                          color: selectedPickupLocation == null
                               ? Colors.grey[600]
                               : Colors.black,
                         ),
@@ -311,6 +329,8 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
   }
 
   Widget _buildDurationField(BuildContext context) {
+    final selectedDuration = ref.watch(selectedRentDurationProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -336,11 +356,11 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    _selectedDuration == null
+                    selectedDuration == null
                         ? 'Select duration'
-                        : '$_selectedDuration days',
+                        : '$selectedDuration days',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: _selectedDuration == null
+                          color: selectedDuration == null
                               ? Colors.grey[600]
                               : Colors.black,
                         ),
@@ -356,40 +376,53 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
   }
 
   Future<void> _selectStartDate(BuildContext context) async {
+    final selectedDate = ref.read(selectedStartDateProvider);
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: _selectedDate ?? DateTime.now(),
+      initialDate: selectedDate ?? DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 365)),
     );
-    if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-      });
+    if (picked != null) {
+      ref.read(selectedStartDateProvider.notifier).setDate(picked);
     }
   }
 
   void _showPickupLocationBottomSheet() {
-    // TODO: Implement pickup location bottom sheet
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Pickup location selection will be implemented'),
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.6,
+        minChildSize: 0.4,
+        maxChildSize: 0.9,
+        builder: (context, scrollController) => const BikePickupLocationWidget(),
       ),
     );
   }
 
   void _showDurationBottomSheet() {
-    // TODO: Implement duration bottom sheet
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Duration selection will be implemented'),
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.6,
+        minChildSize: 0.4,
+        maxChildSize: 0.9,
+        builder: (context, scrollController) => const RentDurationWidget(),
       ),
     );
   }
 
   void _handleRentSubmit() {
+    final selectedDate = ref.read(selectedStartDateProvider);
+    final selectedPickupLocation = ref.read(selectedPickupLocationProvider);
+    final selectedDuration = ref.read(selectedRentDurationProvider);
+
     if (_formKey.currentState!.validate()) {
-      if (_selectedDate == null) {
+      if (selectedDate == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Please select a start date'),
@@ -399,7 +432,7 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
         return;
       }
 
-      if (_selectedPickupLocation == null) {
+      if (selectedPickupLocation == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Please select a pickup location'),
@@ -409,7 +442,7 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
         return;
       }
 
-      if (_selectedDuration == null) {
+      if (selectedDuration == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Please select a duration'),
