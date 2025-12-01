@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../domain/repositories/home_repository.dart';
 import '../datasources/remote/supabase_home.dart';
 import '../models/home_model.dart';
+import '../models/rental_package_model.dart';
 
 part 'home_repository_impl.g.dart';
 
@@ -25,5 +25,10 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<HomeModel> getHomeSections() async {
     return await _homeDataSource.getHomeSections();
+  }
+
+  @override
+  Future<List<RentalPackageModel>> getPackages() async {
+    return await _homeDataSource.getPackages();
   }
 }

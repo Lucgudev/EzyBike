@@ -21,11 +21,9 @@ RentalPackageModel _$RentalPackageModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RentalPackageModel {
-  String get id => throw _privateConstructorUsedError;
-  String get plan => throw _privateConstructorUsedError;
-  double get pricePerDay => throw _privateConstructorUsedError;
-  double get pricePerWeek => throw _privateConstructorUsedError;
-  double get pricePerMonth => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   String get terms => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
 
@@ -47,11 +45,9 @@ abstract class $RentalPackageModelCopyWith<$Res> {
   ) = _$RentalPackageModelCopyWithImpl<$Res, RentalPackageModel>;
   @useResult
   $Res call({
-    String id,
-    String plan,
-    double pricePerDay,
-    double pricePerWeek,
-    double pricePerMonth,
+    int id,
+    String title,
+    num price,
     String terms,
     String? description,
   });
@@ -73,10 +69,8 @@ class _$RentalPackageModelCopyWithImpl<$Res, $Val extends RentalPackageModel>
   @override
   $Res call({
     Object? id = null,
-    Object? plan = null,
-    Object? pricePerDay = null,
-    Object? pricePerWeek = null,
-    Object? pricePerMonth = null,
+    Object? title = null,
+    Object? price = null,
     Object? terms = null,
     Object? description = freezed,
   }) {
@@ -85,23 +79,15 @@ class _$RentalPackageModelCopyWithImpl<$Res, $Val extends RentalPackageModel>
             id: null == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
+                      as int,
+            title: null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
                       as String,
-            plan: null == plan
-                ? _value.plan
-                : plan // ignore: cast_nullable_to_non_nullable
-                      as String,
-            pricePerDay: null == pricePerDay
-                ? _value.pricePerDay
-                : pricePerDay // ignore: cast_nullable_to_non_nullable
-                      as double,
-            pricePerWeek: null == pricePerWeek
-                ? _value.pricePerWeek
-                : pricePerWeek // ignore: cast_nullable_to_non_nullable
-                      as double,
-            pricePerMonth: null == pricePerMonth
-                ? _value.pricePerMonth
-                : pricePerMonth // ignore: cast_nullable_to_non_nullable
-                      as double,
+            price: null == price
+                ? _value.price
+                : price // ignore: cast_nullable_to_non_nullable
+                      as num,
             terms: null == terms
                 ? _value.terms
                 : terms // ignore: cast_nullable_to_non_nullable
@@ -126,11 +112,9 @@ abstract class _$$RentalPackageModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
-    String plan,
-    double pricePerDay,
-    double pricePerWeek,
-    double pricePerMonth,
+    int id,
+    String title,
+    num price,
     String terms,
     String? description,
   });
@@ -151,10 +135,8 @@ class __$$RentalPackageModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? plan = null,
-    Object? pricePerDay = null,
-    Object? pricePerWeek = null,
-    Object? pricePerMonth = null,
+    Object? title = null,
+    Object? price = null,
     Object? terms = null,
     Object? description = freezed,
   }) {
@@ -163,23 +145,15 @@ class __$$RentalPackageModelImplCopyWithImpl<$Res>
         id: null == id
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        title: null == title
+            ? _value.title
+            : title // ignore: cast_nullable_to_non_nullable
                   as String,
-        plan: null == plan
-            ? _value.plan
-            : plan // ignore: cast_nullable_to_non_nullable
-                  as String,
-        pricePerDay: null == pricePerDay
-            ? _value.pricePerDay
-            : pricePerDay // ignore: cast_nullable_to_non_nullable
-                  as double,
-        pricePerWeek: null == pricePerWeek
-            ? _value.pricePerWeek
-            : pricePerWeek // ignore: cast_nullable_to_non_nullable
-                  as double,
-        pricePerMonth: null == pricePerMonth
-            ? _value.pricePerMonth
-            : pricePerMonth // ignore: cast_nullable_to_non_nullable
-                  as double,
+        price: null == price
+            ? _value.price
+            : price // ignore: cast_nullable_to_non_nullable
+                  as num,
         terms: null == terms
             ? _value.terms
             : terms // ignore: cast_nullable_to_non_nullable
@@ -198,10 +172,8 @@ class __$$RentalPackageModelImplCopyWithImpl<$Res>
 class _$RentalPackageModelImpl implements _RentalPackageModel {
   const _$RentalPackageModelImpl({
     required this.id,
-    required this.plan,
-    required this.pricePerDay,
-    required this.pricePerWeek,
-    required this.pricePerMonth,
+    required this.title,
+    required this.price,
     required this.terms,
     this.description,
   });
@@ -210,15 +182,11 @@ class _$RentalPackageModelImpl implements _RentalPackageModel {
       _$$RentalPackageModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
-  final String plan;
+  final String title;
   @override
-  final double pricePerDay;
-  @override
-  final double pricePerWeek;
-  @override
-  final double pricePerMonth;
+  final num price;
   @override
   final String terms;
   @override
@@ -226,7 +194,7 @@ class _$RentalPackageModelImpl implements _RentalPackageModel {
 
   @override
   String toString() {
-    return 'RentalPackageModel(id: $id, plan: $plan, pricePerDay: $pricePerDay, pricePerWeek: $pricePerWeek, pricePerMonth: $pricePerMonth, terms: $terms, description: $description)';
+    return 'RentalPackageModel(id: $id, title: $title, price: $price, terms: $terms, description: $description)';
   }
 
   @override
@@ -235,13 +203,8 @@ class _$RentalPackageModelImpl implements _RentalPackageModel {
         (other.runtimeType == runtimeType &&
             other is _$RentalPackageModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.plan, plan) || other.plan == plan) &&
-            (identical(other.pricePerDay, pricePerDay) ||
-                other.pricePerDay == pricePerDay) &&
-            (identical(other.pricePerWeek, pricePerWeek) ||
-                other.pricePerWeek == pricePerWeek) &&
-            (identical(other.pricePerMonth, pricePerMonth) ||
-                other.pricePerMonth == pricePerMonth) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.price, price) || other.price == price) &&
             (identical(other.terms, terms) || other.terms == terms) &&
             (identical(other.description, description) ||
                 other.description == description));
@@ -249,16 +212,8 @@ class _$RentalPackageModelImpl implements _RentalPackageModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    plan,
-    pricePerDay,
-    pricePerWeek,
-    pricePerMonth,
-    terms,
-    description,
-  );
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, price, terms, description);
 
   /// Create a copy of RentalPackageModel
   /// with the given fields replaced by the non-null parameter values.
@@ -279,11 +234,9 @@ class _$RentalPackageModelImpl implements _RentalPackageModel {
 
 abstract class _RentalPackageModel implements RentalPackageModel {
   const factory _RentalPackageModel({
-    required final String id,
-    required final String plan,
-    required final double pricePerDay,
-    required final double pricePerWeek,
-    required final double pricePerMonth,
+    required final int id,
+    required final String title,
+    required final num price,
     required final String terms,
     final String? description,
   }) = _$RentalPackageModelImpl;
@@ -292,15 +245,11 @@ abstract class _RentalPackageModel implements RentalPackageModel {
       _$RentalPackageModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
-  String get plan;
+  String get title;
   @override
-  double get pricePerDay;
-  @override
-  double get pricePerWeek;
-  @override
-  double get pricePerMonth;
+  num get price;
   @override
   String get terms;
   @override

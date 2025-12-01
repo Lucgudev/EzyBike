@@ -7,7 +7,7 @@ part of 'bike_rent_page_viewmodel.dart';
 // **************************************************************************
 
 String _$bikeRentPageViewModelHash() =>
-    r'60f55ca66143d55e940ef2728d6bdbf5bb7bda05';
+    r'e9dc3d010f962e0c75a622e727efa30a4426a889';
 
 /// See also [BikeRentPageViewModel].
 @ProviderFor(BikeRentPageViewModel)

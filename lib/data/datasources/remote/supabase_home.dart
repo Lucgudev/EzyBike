@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/home_model.dart';
+import '../../models/rental_package_model.dart';
 
 class SupabaseHomeDataSource {
   SupabaseHomeDataSource();
@@ -20,6 +21,23 @@ class SupabaseHomeDataSource {
       return HomeModel(sections: sections);
     } catch (e) {
       throw Exception('Failed to get home sections: $e');
+    }
+  }
+
+  Future<List<RentalPackageModel>> getPackages() async {
+    try {
+      final data = await Supabase.instance.client
+          .from('packets')
+          .select('*')
+          .order('created_at', ascending: true);
+
+      return (data as List)
+          .map(
+            (json) => RentalPackageModel.fromJson(json as Map<String, dynamic>),
+          )
+          .toList();
+    } catch (e) {
+      throw Exception('Failed to get packages: $e');
     }
   }
 }
