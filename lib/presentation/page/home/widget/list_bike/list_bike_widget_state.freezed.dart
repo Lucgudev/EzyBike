@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ListBikeWidgetState {
   List<BikeModel> get bikes => throw _privateConstructorUsedError;
+  List<BikeModel> get filteredBikes => throw _privateConstructorUsedError;
+  List<String> get availableColors => throw _privateConstructorUsedError;
+  String? get selectedColor => throw _privateConstructorUsedError;
 
   /// Create a copy of ListBikeWidgetState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +36,12 @@ abstract class $ListBikeWidgetStateCopyWith<$Res> {
     $Res Function(ListBikeWidgetState) then,
   ) = _$ListBikeWidgetStateCopyWithImpl<$Res, ListBikeWidgetState>;
   @useResult
-  $Res call({List<BikeModel> bikes});
+  $Res call({
+    List<BikeModel> bikes,
+    List<BikeModel> filteredBikes,
+    List<String> availableColors,
+    String? selectedColor,
+  });
 }
 
 /// @nodoc
@@ -50,13 +58,30 @@ class _$ListBikeWidgetStateCopyWithImpl<$Res, $Val extends ListBikeWidgetState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? bikes = null}) {
+  $Res call({
+    Object? bikes = null,
+    Object? filteredBikes = null,
+    Object? availableColors = null,
+    Object? selectedColor = freezed,
+  }) {
     return _then(
       _value.copyWith(
             bikes: null == bikes
                 ? _value.bikes
                 : bikes // ignore: cast_nullable_to_non_nullable
                       as List<BikeModel>,
+            filteredBikes: null == filteredBikes
+                ? _value.filteredBikes
+                : filteredBikes // ignore: cast_nullable_to_non_nullable
+                      as List<BikeModel>,
+            availableColors: null == availableColors
+                ? _value.availableColors
+                : availableColors // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            selectedColor: freezed == selectedColor
+                ? _value.selectedColor
+                : selectedColor // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -72,7 +97,12 @@ abstract class _$$ListBikeWidgetStateImplCopyWith<$Res>
   ) = __$$ListBikeWidgetStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<BikeModel> bikes});
+  $Res call({
+    List<BikeModel> bikes,
+    List<BikeModel> filteredBikes,
+    List<String> availableColors,
+    String? selectedColor,
+  });
 }
 
 /// @nodoc
@@ -88,13 +118,30 @@ class __$$ListBikeWidgetStateImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? bikes = null}) {
+  $Res call({
+    Object? bikes = null,
+    Object? filteredBikes = null,
+    Object? availableColors = null,
+    Object? selectedColor = freezed,
+  }) {
     return _then(
       _$ListBikeWidgetStateImpl(
         bikes: null == bikes
             ? _value._bikes
             : bikes // ignore: cast_nullable_to_non_nullable
                   as List<BikeModel>,
+        filteredBikes: null == filteredBikes
+            ? _value._filteredBikes
+            : filteredBikes // ignore: cast_nullable_to_non_nullable
+                  as List<BikeModel>,
+        availableColors: null == availableColors
+            ? _value._availableColors
+            : availableColors // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        selectedColor: freezed == selectedColor
+            ? _value.selectedColor
+            : selectedColor // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }
@@ -103,8 +150,14 @@ class __$$ListBikeWidgetStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ListBikeWidgetStateImpl implements _ListBikeWidgetState {
-  const _$ListBikeWidgetStateImpl({required final List<BikeModel> bikes})
-    : _bikes = bikes;
+  const _$ListBikeWidgetStateImpl({
+    required final List<BikeModel> bikes,
+    required final List<BikeModel> filteredBikes,
+    required final List<String> availableColors,
+    this.selectedColor,
+  }) : _bikes = bikes,
+       _filteredBikes = filteredBikes,
+       _availableColors = availableColors;
 
   final List<BikeModel> _bikes;
   @override
@@ -114,9 +167,28 @@ class _$ListBikeWidgetStateImpl implements _ListBikeWidgetState {
     return EqualUnmodifiableListView(_bikes);
   }
 
+  final List<BikeModel> _filteredBikes;
+  @override
+  List<BikeModel> get filteredBikes {
+    if (_filteredBikes is EqualUnmodifiableListView) return _filteredBikes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filteredBikes);
+  }
+
+  final List<String> _availableColors;
+  @override
+  List<String> get availableColors {
+    if (_availableColors is EqualUnmodifiableListView) return _availableColors;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_availableColors);
+  }
+
+  @override
+  final String? selectedColor;
+
   @override
   String toString() {
-    return 'ListBikeWidgetState(bikes: $bikes)';
+    return 'ListBikeWidgetState(bikes: $bikes, filteredBikes: $filteredBikes, availableColors: $availableColors, selectedColor: $selectedColor)';
   }
 
   @override
@@ -124,12 +196,27 @@ class _$ListBikeWidgetStateImpl implements _ListBikeWidgetState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ListBikeWidgetStateImpl &&
-            const DeepCollectionEquality().equals(other._bikes, _bikes));
+            const DeepCollectionEquality().equals(other._bikes, _bikes) &&
+            const DeepCollectionEquality().equals(
+              other._filteredBikes,
+              _filteredBikes,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._availableColors,
+              _availableColors,
+            ) &&
+            (identical(other.selectedColor, selectedColor) ||
+                other.selectedColor == selectedColor));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_bikes));
+  int get hashCode => Object.hash(
+    runtimeType,
+    const DeepCollectionEquality().hash(_bikes),
+    const DeepCollectionEquality().hash(_filteredBikes),
+    const DeepCollectionEquality().hash(_availableColors),
+    selectedColor,
+  );
 
   /// Create a copy of ListBikeWidgetState
   /// with the given fields replaced by the non-null parameter values.
@@ -144,11 +231,21 @@ class _$ListBikeWidgetStateImpl implements _ListBikeWidgetState {
 }
 
 abstract class _ListBikeWidgetState implements ListBikeWidgetState {
-  const factory _ListBikeWidgetState({required final List<BikeModel> bikes}) =
-      _$ListBikeWidgetStateImpl;
+  const factory _ListBikeWidgetState({
+    required final List<BikeModel> bikes,
+    required final List<BikeModel> filteredBikes,
+    required final List<String> availableColors,
+    final String? selectedColor,
+  }) = _$ListBikeWidgetStateImpl;
 
   @override
   List<BikeModel> get bikes;
+  @override
+  List<BikeModel> get filteredBikes;
+  @override
+  List<String> get availableColors;
+  @override
+  String? get selectedColor;
 
   /// Create a copy of ListBikeWidgetState
   /// with the given fields replaced by the non-null parameter values.

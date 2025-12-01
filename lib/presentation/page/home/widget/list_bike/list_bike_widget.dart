@@ -5,6 +5,7 @@ import 'package:sample_bike_customer_app/core/helper/currency_helper.dart';
 import 'package:sample_bike_customer_app/core/provider/global_provider.dart';
 import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
+import 'color_filter_widget.dart';
 import 'list_bike_widget_viewmodel.dart';
 import 'stock_badge_widget.dart';
 
@@ -33,23 +34,45 @@ class ListBikeWidget extends ConsumerWidget {
                 ),
               ),
             ),
+            // Color Filter
+            if (state.availableColors.isNotEmpty)
+              ColorFilterWidget(
+                state: state,
+                availableColors: state.availableColors,
+              ),
+            // Bikes Grid
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 0.65,
-                ),
-                itemCount: state.bikes.length,
-                itemBuilder: (context, index) {
-                  final bike = state.bikes[index];
-                  return _buildBikeCard(context, ref, bike);
-                },
-              ),
+              child: state.filteredBikes.isEmpty
+                  ? Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(32.0),
+                        child: Text(
+                          'No bikes available for the selected color',
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color: Colors.grey[600],
+                              ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )
+                  : GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 12,
+                            mainAxisSpacing: 12,
+                            childAspectRatio: 0.65,
+                          ),
+                      itemCount: state.filteredBikes.length,
+                      itemBuilder: (context, index) {
+                        final bike = state.filteredBikes[index];
+                        return _buildBikeCard(context, ref, bike);
+                      },
+                    ),
             ),
           ],
         );
@@ -79,7 +102,10 @@ class ListBikeWidget extends ConsumerWidget {
           onTap: isOutOfStock
               ? null
               : () {
-                  ref.read(navigatorKeyProvider).currentState?.pushNamed(
+                  ref
+                      .read(navigatorKeyProvider)
+                      .currentState
+                      ?.pushNamed(
                         Routes.bikeDetailPage,
                         arguments: bike,
                       );
@@ -175,7 +201,8 @@ class ListBikeWidget extends ConsumerWidget {
                         const SizedBox(height: 8),
                         Text(
                           '${CurrencyHelper.formatRupiah(bike.rentalPricePerDay)}/day',
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
                         ),

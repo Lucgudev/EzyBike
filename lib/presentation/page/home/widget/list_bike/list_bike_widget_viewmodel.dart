@@ -11,7 +11,12 @@ class ListBikeWidgetViewModel extends _$ListBikeWidgetViewModel {
   @override
   FutureOr<ListBikeWidgetState> build() async {
     final bikes = await _loadBikes();
-    return ListBikeWidgetState(bikes: bikes);
+    final availableColors = _getUniqueColors(bikes);
+    return ListBikeWidgetState(
+      bikes: bikes,
+      filteredBikes: bikes,
+      availableColors: availableColors,
+    );
   }
 
   Future<List<BikeModel>> _loadBikes() async {
@@ -23,11 +28,49 @@ class ListBikeWidgetViewModel extends _$ListBikeWidgetViewModel {
     }
   }
 
+  List<String> _getUniqueColors(List<BikeModel> bikes) {
+    return bikes
+        .where((bike) => bike.color != null)
+        .map((bike) => bike.color!)
+        .toSet()
+        .toList();
+  }
+
+  void filterByColor(String? color) {
+    state.whenData((currentState) {
+      if (color == null) {
+        // Clear filter - show all bikes
+        state = AsyncValue.data(
+          currentState.copyWith(
+            filteredBikes: currentState.bikes,
+            selectedColor: null,
+          ),
+        );
+      } else {
+        // Filter bikes by color
+        final filtered = currentState.bikes
+            .where((bike) => bike.color == color)
+            .toList();
+        state = AsyncValue.data(
+          currentState.copyWith(
+            filteredBikes: filtered,
+            selectedColor: color,
+          ),
+        );
+      }
+    });
+  }
+
   Future<void> refresh() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final bikes = await _loadBikes();
-      return ListBikeWidgetState(bikes: bikes);
+      final availableColors = _getUniqueColors(bikes);
+      return ListBikeWidgetState(
+        bikes: bikes,
+        filteredBikes: bikes,
+        availableColors: availableColors,
+      );
     });
   }
 }

@@ -7,7 +7,7 @@ part of 'list_bike_widget_viewmodel.dart';
 // **************************************************************************
 
 String _$listBikeWidgetViewModelHash() =>
-    r'78a00784119635f9e6570dabf4d818ace2f6c0e3';
+    r'9f99b43f201924be9e22c93c4828a0a77e947130';
 
 /// See also [ListBikeWidgetViewModel].
 @ProviderFor(ListBikeWidgetViewModel)
