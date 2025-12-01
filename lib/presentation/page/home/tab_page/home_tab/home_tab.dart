@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
+import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/data/models/home_model.dart';
 import '../../widget/banner/promo_banner_widget.dart';
 import '../../widget/list_bike/list_bike_widget.dart';
@@ -21,7 +23,9 @@ class HomeTab extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {
-              // TODO: Navigate to notifications
+              ref.read(appNavigatorProvider).pushNamedWithResult(
+                    Routes.notificationPage,
+                  );
             },
           ),
         ],

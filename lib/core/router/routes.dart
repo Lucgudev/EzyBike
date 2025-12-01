@@ -6,4 +6,5 @@ mixin Routes {
   static const String bikeDetailPage = '/bikeDetailPage';
   static const String bikeRentPage = '/bikeRentPage';
   static const String bikeRentSuccessPage = '/bikeRentSuccessPage';
+  static const String notificationPage = '/notificationPage';
 }

@@ -5,6 +5,7 @@ import 'package:sample_bike_customer_app/presentation/page/bike_rent/bike_rent_p
 import 'package:sample_bike_customer_app/presentation/page/bike_rent_success/bike_rent_success_page.dart';
 import 'package:sample_bike_customer_app/presentation/page/home/home_page.dart';
 import 'package:sample_bike_customer_app/presentation/page/login/login_page.dart';
+import 'package:sample_bike_customer_app/presentation/page/notification/notification_page.dart';
 import 'package:sample_bike_customer_app/presentation/page/register/register_page.dart';
 import 'package:sample_bike_customer_app/presentation/page/root/root_page.dart';
 
@@ -18,6 +19,7 @@ class Router {
       Routes.bikeDetailPage: (context) => const BikeDetailPage(),
       Routes.bikeRentPage: (context) => const BikeRentPage(),
       Routes.bikeRentSuccessPage: (context) => const BikeRentSuccessPage(),
+      Routes.notificationPage: (context) => const NotificationPage(),
     };
   }
 }
