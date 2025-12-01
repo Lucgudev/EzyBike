@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/repositories/order_repository.dart';
 import '../datasources/remote/supabase_order.dart';
+import '../models/bike_rent_order_model.dart';
 import '../models/bike_rent_request_model.dart';
 import '../models/pickup_location_model.dart';
 import '../models/rent_duration_model.dart';
@@ -37,6 +38,15 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<List<RentDurationModel>> getRentDurations() async {
     try {
       return await _dataSource.getRentDurations();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<BikeRentOrderModel>> getOrderHistory() async {
+    try {
+      return await _dataSource.getOrderHistory();
     } catch (e) {
       rethrow;
     }
