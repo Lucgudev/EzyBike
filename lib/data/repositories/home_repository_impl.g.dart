@@ -26,7 +26,27 @@ final supabaseHomeDataSourceProvider =
 // ignore: unused_element
 typedef SupabaseHomeDataSourceRef =
     AutoDisposeProviderRef<SupabaseHomeDataSource>;
-String _$homeRepositoryHash() => r'1f788e8e9b151c986c1f352b5bb460ed64c874ba';
+String _$packageCacheDataSourceHash() =>
+    r'8f72789bd5e574325e8c63e4d96b06d13a80dad9';
+
+/// See also [packageCacheDataSource].
+@ProviderFor(packageCacheDataSource)
+final packageCacheDataSourceProvider =
+    AutoDisposeProvider<PackageCacheDataSource>.internal(
+      packageCacheDataSource,
+      name: r'packageCacheDataSourceProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$packageCacheDataSourceHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
+
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
+typedef PackageCacheDataSourceRef =
+    AutoDisposeProviderRef<PackageCacheDataSource>;
+String _$homeRepositoryHash() => r'21a9dc5793f526aac1cd287107ff183f204e5d66';
 
 /// See also [homeRepository].
 @ProviderFor(homeRepository)
