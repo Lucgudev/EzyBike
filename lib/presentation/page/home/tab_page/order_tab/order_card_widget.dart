@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
 import 'package:sample_bike_customer_app/core/helper/currency_helper.dart';
 import 'package:sample_bike_customer_app/data/models/bike_rent_order_model.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 
 class OrderCardWidget extends StatelessWidget {
   final BikeRentOrderModel order;
@@ -33,7 +34,7 @@ class OrderCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Order #${order.id}',
+                  AppLocalizations.of(context)!.orderNumber(order.id),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -142,21 +143,21 @@ class OrderCardWidget extends StatelessWidget {
                   _buildDetailRow(
                     context,
                     Icons.calendar_today,
-                    'Start Date',
+                    AppLocalizations.of(context)!.startDate,
                     dateFormat.format(order.startDate),
                   ),
                   const SizedBox(height: 8),
                   _buildDetailRow(
                     context,
                     Icons.access_time,
-                    'Duration',
+                    AppLocalizations.of(context)!.duration,
                     order.duration.duration,
                   ),
                   const SizedBox(height: 8),
                   _buildDetailRow(
                     context,
                     Icons.location_on,
-                    'Pickup Point',
+                    AppLocalizations.of(context)!.pickupPoint,
                     order.pickupArea.name,
                   ),
                 ],

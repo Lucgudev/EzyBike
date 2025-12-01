@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
 import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/data/models/home_model.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import '../../widget/banner/promo_banner_widget.dart';
 import '../../widget/list_bike/list_bike_widget.dart';
 import '../../widget/list_package/list_package_widget.dart';
@@ -33,8 +34,8 @@ class HomeTab extends ConsumerWidget {
       body: homeState.when(
         data: (homeModel) {
           if (homeModel == null || homeModel.sections.isEmpty) {
-            return const Center(
-              child: Text('No sections available'),
+            return Center(
+              child: Text(AppLocalizations.of(context)!.noSectionsAvailable),
             );
           }
 
@@ -66,7 +67,7 @@ class HomeTab extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Failed to load sections',
+                AppLocalizations.of(context)!.failedToLoadSections,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
@@ -83,7 +84,7 @@ class HomeTab extends ConsumerWidget {
                   ref.read(homeTabViewModelProvider.notifier).refresh();
                 },
                 icon: const Icon(Icons.refresh),
-                label: const Text('Retry'),
+                label: Text(AppLocalizations.of(context)!.retry),
               ),
             ],
           ),

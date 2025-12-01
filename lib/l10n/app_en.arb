@@ -1,0 +1,463 @@
+{
+  "@@locale": "en",
+
+  "appName": "Bike Rental",
+  "@appName": {
+    "description": "The application name"
+  },
+
+  "bikeCustomerApp": "Bike Customer App",
+  "@bikeCustomerApp": {
+    "description": "The bike customer application name"
+  },
+
+  "email": "Email",
+  "@email": {
+    "description": "Email input field label"
+  },
+
+  "enterYourEmail": "Enter your email",
+  "@enterYourEmail": {
+    "description": "Email input field hint"
+  },
+
+  "password": "Password",
+  "@password": {
+    "description": "Password input field label"
+  },
+
+  "enterYourPassword": "Enter your password",
+  "@enterYourPassword": {
+    "description": "Password input field hint"
+  },
+
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password input field label"
+  },
+
+  "reEnterYourPassword": "Re-enter your password",
+  "@reEnterYourPassword": {
+    "description": "Confirm password input field hint"
+  },
+
+  "signIn": "Sign In",
+  "@signIn": {
+    "description": "Sign in button text"
+  },
+
+  "signInToContinue": "Sign in to continue",
+  "@signInToContinue": {
+    "description": "Sign in page subtitle"
+  },
+
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign up button text"
+  },
+
+  "createAccount": "Create Account",
+  "@createAccount": {
+    "description": "Create account page title"
+  },
+
+  "signUpToGetStarted": "Sign up to get started",
+  "@signUpToGetStarted": {
+    "description": "Sign up page subtitle"
+  },
+
+  "loginSuccessful": "Login successful!",
+  "@loginSuccessful": {
+    "description": "Login success message"
+  },
+
+  "loginFailedError": "Login failed: {error}",
+  "@loginFailedError": {
+    "description": "Login failed error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "registrationSuccessful": "Registration successful!",
+  "@registrationSuccessful": {
+    "description": "Registration success message"
+  },
+
+  "registrationFailedError": "Registration failed: {error}",
+  "@registrationFailedError": {
+    "description": "Registration failed error message",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "dontHaveAnAccount": "Don't have an account? ",
+  "@dontHaveAnAccount": {
+    "description": "Text asking if user doesn't have account"
+  },
+
+  "alreadyHaveAnAccount": "Already have an account? ",
+  "@alreadyHaveAnAccount": {
+    "description": "Text asking if user already has account"
+  },
+
+  "homeTab": "Home",
+  "@homeTab": {
+    "description": "Home tab label"
+  },
+
+  "orderHistoryTab": "Orders",
+  "@orderHistoryTab": {
+    "description": "Order history tab label"
+  },
+
+  "profileTab": "Profile",
+  "@profileTab": {
+    "description": "Profile tab label"
+  },
+
+  "orderHistory": "Order History",
+  "@orderHistory": {
+    "description": "Order history page title"
+  },
+
+  "noOrderHistory": "No order history",
+  "@noOrderHistory": {
+    "description": "Empty order history message"
+  },
+
+  "yourRentalOrdersWillAppearHere": "Your rental orders will appear here",
+  "@yourRentalOrdersWillAppearHere": {
+    "description": "Empty order history description"
+  },
+
+  "failedToLoadOrders": "Failed to load orders",
+  "@failedToLoadOrders": {
+    "description": "Error loading orders message"
+  },
+
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+
+  "orderNumber": "Order #{id}",
+  "@orderNumber": {
+    "description": "Order number label",
+    "placeholders": {
+      "id": {
+        "type": "int"
+      }
+    }
+  },
+
+  "startDate": "Start Date",
+  "@startDate": {
+    "description": "Start date label"
+  },
+
+  "duration": "Duration",
+  "@duration": {
+    "description": "Duration label"
+  },
+
+  "pickupPoint": "Pickup Point",
+  "@pickupPoint": {
+    "description": "Pickup point label"
+  },
+
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile page title"
+  },
+
+  "noEmail": "No email",
+  "@noEmail": {
+    "description": "No email placeholder"
+  },
+
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Privacy policy menu item"
+  },
+
+  "aboutUs": "About Us",
+  "@aboutUs": {
+    "description": "About us menu item"
+  },
+
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout menu item"
+  },
+
+  "areYouSureYouWantToLogout": "Are you sure you want to logout?",
+  "@areYouSureYouWantToLogout": {
+    "description": "Logout confirmation message"
+  },
+
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+
+  "failedToLoadProfile": "Failed to load profile",
+  "@failedToLoadProfile": {
+    "description": "Error loading profile message"
+  },
+
+  "couldNotOpenUrl": "Could not open URL: {url}",
+  "@couldNotOpenUrl": {
+    "description": "Error opening URL message",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications page title"
+  },
+
+  "noNotifications": "No notifications",
+  "@noNotifications": {
+    "description": "Empty notifications message"
+  },
+
+  "youHaveNoNotificationsAtThisTime": "You have no notifications at this time",
+  "@youHaveNoNotificationsAtThisTime": {
+    "description": "Empty notifications description"
+  },
+
+  "availableBikes": "Available Bikes",
+  "@availableBikes": {
+    "description": "Available bikes section title"
+  },
+
+  "all": "All",
+  "@all": {
+    "description": "All filter option"
+  },
+
+  "noBikesAvailableForTheSelectedColor": "No bikes available for the selected color",
+  "@noBikesAvailableForTheSelectedColor": {
+    "description": "No bikes for color filter message"
+  },
+
+  "inStock": "In Stock",
+  "@inStock": {
+    "description": "In stock badge text"
+  },
+
+  "outOfStock": "Out of Stock",
+  "@outOfStock": {
+    "description": "Out of stock badge text"
+  },
+
+  "perDay": "/day",
+  "@perDay": {
+    "description": "Per day suffix for price"
+  },
+
+  "rentalPackages": "Rental Packages",
+  "@rentalPackages": {
+    "description": "Rental packages section title"
+  },
+
+  "get": "Get",
+  "@get": {
+    "description": "Get button text for packages"
+  },
+
+  "offers": "Offers",
+  "@offers": {
+    "description": "Offers section title"
+  },
+
+  "couldNotOpenTheLink": "Could not open the link",
+  "@couldNotOpenTheLink": {
+    "description": "Could not open link error message"
+  },
+
+  "errorOpeningLinkError": "Error opening link: {error}",
+  "@errorOpeningLinkError": {
+    "description": "Error opening link with details",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+
+  "bikeDetails": "Bike Details",
+  "@bikeDetails": {
+    "description": "Bike details page title"
+  },
+
+  "specifications": "Specifications",
+  "@specifications": {
+    "description": "Specifications section title"
+  },
+
+  "range": "Range",
+  "@range": {
+    "description": "Range specification label"
+  },
+
+  "batteryCapacity": "Battery Capacity",
+  "@batteryCapacity": {
+    "description": "Battery capacity specification label"
+  },
+
+  "maxSpeed": "Max Speed",
+  "@maxSpeed": {
+    "description": "Max speed specification label"
+  },
+
+  "pricePerDay": "Price per day",
+  "@pricePerDay": {
+    "description": "Price per day label"
+  },
+
+  "rentNow": "Rent Now",
+  "@rentNow": {
+    "description": "Rent now button text"
+  },
+
+  "rentBike": "Rent Bike",
+  "@rentBike": {
+    "description": "Rent bike page title"
+  },
+
+  "bikeInformation": "Bike Information",
+  "@bikeInformation": {
+    "description": "Bike information section title"
+  },
+
+  "rentalDetails": "Rental Details",
+  "@rentalDetails": {
+    "description": "Rental details section title"
+  },
+
+  "startDatePlaceholder": "Select start date",
+  "@startDatePlaceholder": {
+    "description": "Start date placeholder text"
+  },
+
+  "pickupLocationPlaceholder": "Select pickup location",
+  "@pickupLocationPlaceholder": {
+    "description": "Pickup location placeholder text"
+  },
+
+  "phoneNumber": "Phone Number",
+  "@phoneNumber": {
+    "description": "Phone number label"
+  },
+
+  "enterYourPhoneNumber": "Enter your phone number",
+  "@enterYourPhoneNumber": {
+    "description": "Phone number placeholder text"
+  },
+
+  "pleaseEnterYourPhoneNumber": "Please enter your phone number",
+  "@pleaseEnterYourPhoneNumber": {
+    "description": "Phone number validation message"
+  },
+
+  "pickupLocation": "Pickup Location",
+  "@pickupLocation": {
+    "description": "Pickup location label"
+  },
+
+  "selectPickupLocationPlaceholder": "Select pickup location",
+  "@selectPickupLocationPlaceholder": {
+    "description": "Pickup location field placeholder"
+  },
+
+  "noPickupLocationsAvailable": "No pickup locations available",
+  "@noPickupLocationsAvailable": {
+    "description": "No pickup locations message"
+  },
+
+  "failedToLoadLocations": "Failed to load locations",
+  "@failedToLoadLocations": {
+    "description": "Failed to load locations error message"
+  },
+
+  "selectDurationPlaceholder": "Select duration",
+  "@selectDurationPlaceholder": {
+    "description": "Duration field placeholder text"
+  },
+
+  "noDurationsAvailable": "No durations available",
+  "@noDurationsAvailable": {
+    "description": "No durations message"
+  },
+
+  "failedToLoadDurations": "Failed to load durations",
+  "@failedToLoadDurations": {
+    "description": "Failed to load durations error message"
+  },
+
+  "priceSummary": "Price Summary",
+  "@priceSummary": {
+    "description": "Price summary section title"
+  },
+
+  "total": "Total",
+  "@total": {
+    "description": "Total label"
+  },
+
+  "rent": "Rent",
+  "@rent": {
+    "description": "Rent button text"
+  },
+
+  "selectStartDate": "Select Start Date",
+  "@selectStartDate": {
+    "description": "Select start date dialog title"
+  },
+
+  "selectPickupLocation": "Select Pickup Location",
+  "@selectPickupLocation": {
+    "description": "Select pickup location dialog title"
+  },
+
+  "selectDuration": "Select Duration",
+  "@selectDuration": {
+    "description": "Select duration dialog title"
+  },
+
+  "rentalSuccess": "Rental Success!",
+  "@rentalSuccess": {
+    "description": "Rental success title"
+  },
+
+  "yourBikeRentalHasBeenSuccessfullyProcessed": "Your bike rental has been successfully processed",
+  "@yourBikeRentalHasBeenSuccessfullyProcessed": {
+    "description": "Rental success message"
+  },
+
+  "backToHome": "Back to Home",
+  "@backToHome": {
+    "description": "Back to home button text"
+  },
+
+  "noSectionsAvailable": "No sections available",
+  "@noSectionsAvailable": {
+    "description": "No sections available message on home"
+  },
+
+  "failedToLoadSections": "Failed to load sections",
+  "@failedToLoadSections": {
+    "description": "Error loading sections message"
+  }
+}

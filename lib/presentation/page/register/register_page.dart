@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import '../../../core/router/routes.dart';
 import 'register_page_view_model.dart';
 
@@ -68,7 +69,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           error: (error, stackTrace) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Registration failed: ${error.toString()}'),
+                content: Text(AppLocalizations.of(context)!.registrationFailedError(error.toString())),
                 backgroundColor: Colors.red,
               ),
             );
@@ -76,8 +77,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           data: (user) {
             if (user != null) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Registration successful!'),
+                SnackBar(
+                  content: Text(AppLocalizations.of(context)!.registrationSuccessful),
                   backgroundColor: Colors.green,
                 ),
               );
@@ -93,7 +94,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        title: Text(AppLocalizations.of(context)!.signUp),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -114,7 +115,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Create Account',
+                    AppLocalizations.of(context)!.createAccount,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -122,7 +123,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Sign up to get started',
+                    AppLocalizations.of(context)!.signUpToGetStarted,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Colors.grey[600],
                         ),
@@ -136,11 +137,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      hintText: 'Enter your email',
-                      prefixIcon: Icon(Icons.email_outlined),
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.email,
+                      hintText: AppLocalizations.of(context)!.enterYourEmail,
+                      prefixIcon: const Icon(Icons.email_outlined),
+                      border: const OutlineInputBorder(),
                     ),
                     validator: formValidation.validateEmailField,
                   ),
@@ -153,8 +154,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     textInputAction: TextInputAction.next,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: InputDecoration(
-                      labelText: 'Password',
-                      hintText: 'Enter your password',
+                      labelText: AppLocalizations.of(context)!.password,
+                      hintText: AppLocalizations.of(context)!.enterYourPassword,
                       prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -182,8 +183,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onFieldSubmitted: (_) => _handleSignUp(),
                     decoration: InputDecoration(
-                      labelText: 'Confirm Password',
-                      hintText: 'Re-enter your password',
+                      labelText: AppLocalizations.of(context)!.confirmPassword,
+                      hintText: AppLocalizations.of(context)!.reEnterYourPassword,
                       prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -221,9 +222,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                               color: Colors.white,
                             ),
                           )
-                        : const Text(
-                            'Sign Up',
-                            style: TextStyle(fontSize: 16),
+                        : Text(
+                            AppLocalizations.of(context)!.signUp,
+                            style: const TextStyle(fontSize: 16),
                           ),
                   ),
                   const SizedBox(height: 16),
@@ -233,7 +234,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an account? ',
+                        AppLocalizations.of(context)!.alreadyHaveAnAccount,
                         style: TextStyle(color: Colors.grey[600]),
                       ),
                       TextButton(
@@ -242,7 +243,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                             : () {
                                 Navigator.of(context).pop();
                               },
-                        child: const Text('Sign In'),
+                        child: Text(AppLocalizations.of(context)!.signIn),
                       ),
                     ],
                   ),

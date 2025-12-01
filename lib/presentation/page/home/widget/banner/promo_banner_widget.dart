@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/data/models/banner_model.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'promo_banner_widget_viewmodel.dart';
 
@@ -25,7 +26,7 @@ class PromoBannerWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                title ?? 'Offers',
+                title ?? AppLocalizations.of(context)!.offers,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -200,8 +201,8 @@ class PromoBannerWidget extends ConsumerWidget {
 
       if (!launched && context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Could not open the link'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.couldNotOpenTheLink),
             backgroundColor: Colors.red,
           ),
         );
@@ -210,7 +211,7 @@ class PromoBannerWidget extends ConsumerWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error opening link: ${e.toString()}'),
+            content: Text(AppLocalizations.of(context)!.errorOpeningLinkError(e.toString())),
             backgroundColor: Colors.red,
           ),
         );

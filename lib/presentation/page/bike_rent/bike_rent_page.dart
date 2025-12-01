@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
 import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import 'bike_rent_page_state.dart';
 import 'bike_rent_page_viewmodel.dart';
 import 'provider/bike_rent_form_provider.dart';
@@ -76,7 +77,7 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rent Bike'),
+        title: Text(AppLocalizations.of(context)!.rentBike),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -92,7 +93,7 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
 
                 // Form Title
                 Text(
-                  'Rental Details',
+                  AppLocalizations.of(context)!.rentalDetails,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -136,9 +137,9 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
                               color: Colors.white,
                             ),
                           )
-                        : const Text(
-                            'Rent',
-                            style: TextStyle(
+                        : Text(
+                            AppLocalizations.of(context)!.rent,
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),

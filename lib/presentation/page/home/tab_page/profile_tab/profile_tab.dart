@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/provider/global_provider.dart';
 import 'package:sample_bike_customer_app/core/router/routes.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'profile_tab_viewmodel.dart';
 
@@ -14,7 +15,7 @@ class ProfileTab extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(AppLocalizations.of(context)!.profile),
         centerTitle: true,
       ),
       body: profileState.when(
@@ -42,7 +43,7 @@ class ProfileTab extends ConsumerWidget {
                 const SizedBox(height: 16),
                 // User Email
                 Text(
-                  user?.email ?? 'No email',
+                  user?.email ?? AppLocalizations.of(context)!.noEmail,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -68,7 +69,7 @@ class ProfileTab extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Failed to load profile',
+                AppLocalizations.of(context)!.failedToLoadProfile,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
@@ -92,7 +93,7 @@ class ProfileTab extends ConsumerWidget {
         _buildMenuItem(
           context,
           icon: Icons.privacy_tip_outlined,
-          title: 'Privacy Policy',
+          title: AppLocalizations.of(context)!.privacyPolicy,
           onTap: () =>
               _launchUrl('https://electrum.id/privacy-policy', context),
         ),
@@ -100,14 +101,14 @@ class ProfileTab extends ConsumerWidget {
         _buildMenuItem(
           context,
           icon: Icons.info_outline,
-          title: 'About Us',
+          title: AppLocalizations.of(context)!.aboutUs,
           onTap: () => _launchUrl('https://electrum.id/about-us', context),
         ),
         const Divider(height: 1),
         _buildMenuItem(
           context,
           icon: Icons.logout,
-          title: 'Logout',
+          title: AppLocalizations.of(context)!.logout,
           iconColor: Colors.red,
           textColor: Colors.red,
           onTap: () => _handleLogout(context, ref),
@@ -151,7 +152,7 @@ class ProfileTab extends ConsumerWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Could not open URL: $urlString'),
+            content: Text(AppLocalizations.of(context)!.couldNotOpenUrl(urlString)),
             backgroundColor: Colors.red,
           ),
         );
@@ -162,19 +163,19 @@ class ProfileTab extends ConsumerWidget {
   Future<void> _handleLogout(BuildContext context, WidgetRef ref) async {
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Logout'),
-        content: const Text('Are you sure you want to logout?'),
+      builder: (dialogContext) => AlertDialog(
+        title: Text(AppLocalizations.of(context)!.logout),
+        content: Text(AppLocalizations.of(context)!.areYouSureYouWantToLogout),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(AppLocalizations.of(context)!.cancel),
           ),
           TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text(
-              'Logout',
-              style: TextStyle(color: Colors.red),
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(
+              AppLocalizations.of(context)!.logout,
+              style: const TextStyle(color: Colors.red),
             ),
           ),
         ],

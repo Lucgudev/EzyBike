@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:sample_bike_customer_app/core/helper/currency_helper.dart';
 import 'package:sample_bike_customer_app/data/models/rental_package_model.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import 'list_package_widget_viewmodel.dart';
 
 class ListPackageWidget extends ConsumerWidget {
@@ -26,7 +27,7 @@ class ListPackageWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                title ?? 'Rental Packages',
+                title ?? AppLocalizations.of(context)!.rentalPackages,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -114,7 +115,7 @@ class ListPackageWidget extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text('Get'),
+                  child: Text(AppLocalizations.of(context)!.get),
                 ),
               ),
             ],

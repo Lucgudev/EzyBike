@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});
@@ -7,7 +8,7 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notifications'),
+        title: Text(AppLocalizations.of(context)!.notifications),
         centerTitle: true,
       ),
       body: Center(
@@ -21,17 +22,17 @@ class NotificationPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'No notifications',
+              AppLocalizations.of(context)!.noNotifications,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Colors.grey[600],
-                  ),
+                color: Colors.grey[600],
+              ),
             ),
             const SizedBox(height: 8),
             Text(
-              'You have no notifications at this time',
+              AppLocalizations.of(context)!.youHaveNoNotificationsAtThisTime,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.grey[500],
-                  ),
+                color: Colors.grey[500],
+              ),
             ),
           ],
         ),

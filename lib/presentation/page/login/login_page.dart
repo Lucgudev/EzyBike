@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/router/app_navigator_impl.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import '../../../core/router/routes.dart';
 import 'login_page_view_model.dart';
 
@@ -66,7 +67,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           error: (error, stackTrace) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Login failed: ${error.toString()}'),
+                content: Text(AppLocalizations.of(context)!.loginFailedError(error.toString())),
                 backgroundColor: Colors.red,
               ),
             );
@@ -74,8 +75,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           data: (user) {
             if (user != null) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Login successful!'),
+                SnackBar(
+                  content: Text(AppLocalizations.of(context)!.loginSuccessful),
                   backgroundColor: Colors.green,
                 ),
               );
@@ -108,7 +109,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Bike Customer App',
+                    AppLocalizations.of(context)!.bikeCustomerApp,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -116,7 +117,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Sign in to continue',
+                    AppLocalizations.of(context)!.signInToContinue,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Colors.grey[600],
                     ),
@@ -130,11 +131,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      hintText: 'Enter your email',
-                      prefixIcon: Icon(Icons.email_outlined),
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)!.email,
+                      hintText: AppLocalizations.of(context)!.enterYourEmail,
+                      prefixIcon: const Icon(Icons.email_outlined),
+                      border: const OutlineInputBorder(),
                     ),
                     validator: formValidation.validateEmailField,
                   ),
@@ -148,8 +149,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onFieldSubmitted: (_) => _handleSignIn(),
                     decoration: InputDecoration(
-                      labelText: 'Password',
-                      hintText: 'Enter your password',
+                      labelText: AppLocalizations.of(context)!.password,
+                      hintText: AppLocalizations.of(context)!.enterYourPassword,
                       prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -186,9 +187,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               color: Colors.white,
                             ),
                           )
-                        : const Text(
-                            'Sign In',
-                            style: TextStyle(fontSize: 16),
+                        : Text(
+                            AppLocalizations.of(context)!.signIn,
+                            style: const TextStyle(fontSize: 16),
                           ),
                   ),
                   const SizedBox(height: 16),
@@ -198,7 +199,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account? ",
+                        AppLocalizations.of(context)!.dontHaveAnAccount,
                         style: TextStyle(color: Colors.grey[600]),
                       ),
                       TextButton(
@@ -209,7 +210,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                     .read(appNavigatorProvider)
                                     .pushNamedWithResult(Routes.registerPage);
                               },
-                        child: const Text('Sign Up'),
+                        child: Text(AppLocalizations.of(context)!.signUp),
                       ),
                     ],
                   ),

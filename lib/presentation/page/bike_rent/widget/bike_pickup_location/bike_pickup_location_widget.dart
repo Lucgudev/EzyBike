@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import '../../provider/bike_rent_form_provider.dart';
 import 'bike_pickup_location_widget_view_model.dart';
 
@@ -37,7 +38,7 @@ class BikePickupLocationWidget extends ConsumerWidget {
             child: Row(
               children: [
                 Text(
-                  'Select Pickup Location',
+                  AppLocalizations.of(context)!.selectPickupLocation,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -56,10 +57,10 @@ class BikePickupLocationWidget extends ConsumerWidget {
             child: locationsState.when(
               data: (locations) {
                 if (locations.isEmpty) {
-                  return const Center(
+                  return Center(
                     child: Padding(
-                      padding: EdgeInsets.all(32),
-                      child: Text('No pickup locations available'),
+                      padding: const EdgeInsets.all(32),
+                      child: Text(AppLocalizations.of(context)!.noPickupLocationsAvailable),
                     ),
                   );
                 }
@@ -125,7 +126,7 @@ class BikePickupLocationWidget extends ConsumerWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Failed to load locations',
+                        AppLocalizations.of(context)!.failedToLoadLocations,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),

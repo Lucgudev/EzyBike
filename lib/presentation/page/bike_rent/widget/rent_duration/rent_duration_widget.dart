@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import '../../provider/bike_rent_form_provider.dart';
 import 'rent_duration_view_model.dart';
 
@@ -37,7 +38,7 @@ class RentDurationWidget extends ConsumerWidget {
             child: Row(
               children: [
                 Text(
-                  'Select Duration',
+                  AppLocalizations.of(context)!.selectDuration,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -56,10 +57,10 @@ class RentDurationWidget extends ConsumerWidget {
             child: durationsState.when(
               data: (durations) {
                 if (durations.isEmpty) {
-                  return const Center(
+                  return Center(
                     child: Padding(
-                      padding: EdgeInsets.all(32),
-                      child: Text('No durations available'),
+                      padding: const EdgeInsets.all(32),
+                      child: Text(AppLocalizations.of(context)!.noDurationsAvailable),
                     ),
                   );
                 }
@@ -124,7 +125,7 @@ class RentDurationWidget extends ConsumerWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Failed to load durations',
+                        AppLocalizations.of(context)!.failedToLoadDurations,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 8),

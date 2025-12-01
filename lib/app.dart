@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart' hide Router;
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/router/router.dart';
 
 import 'core/provider/global_provider.dart';
 import 'core/router/routes.dart';
 import 'core/theme/app_theme.dart';
+import 'l10n/app_localizations.dart';
 
 class SampleBikeCustomerApp extends ConsumerStatefulWidget {
   const SampleBikeCustomerApp({super.key});
@@ -31,6 +33,15 @@ class _SampleBikeCustomerAppState extends ConsumerState<SampleBikeCustomerApp> {
       routes: Router.generateRoute(),
       initialRoute: Routes.rootPage,
       theme: AppTheme.lightTheme,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+      ],
     );
   }
 }

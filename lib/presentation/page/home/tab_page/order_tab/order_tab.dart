@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import 'order_card_widget.dart';
 import 'order_tab_viewmodel.dart';
 
@@ -12,7 +13,7 @@ class OrderTab extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Order History'),
+        title: Text(AppLocalizations.of(context)!.orderHistory),
         centerTitle: true,
       ),
       body: orderState.when(
@@ -29,14 +30,14 @@ class OrderTab extends ConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'No order history',
+                    AppLocalizations.of(context)!.noOrderHistory,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: Colors.grey[600],
                         ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Your rental orders will appear here',
+                    AppLocalizations.of(context)!.yourRentalOrdersWillAppearHere,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Colors.grey[500],
                         ),
@@ -74,7 +75,7 @@ class OrderTab extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Failed to load orders',
+                AppLocalizations.of(context)!.failedToLoadOrders,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 8),
@@ -91,7 +92,7 @@ class OrderTab extends ConsumerWidget {
                   ref.read(orderTabViewModelProvider.notifier).refresh();
                 },
                 icon: const Icon(Icons.refresh),
-                label: const Text('Retry'),
+                label: Text(AppLocalizations.of(context)!.retry),
               ),
             ],
           ),

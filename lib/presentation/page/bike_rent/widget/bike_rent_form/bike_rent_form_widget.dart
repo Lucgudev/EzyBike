@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import 'package:sample_bike_customer_app/presentation/page/bike_rent/provider/bike_rent_form_provider.dart';
 import 'package:sample_bike_customer_app/presentation/page/bike_rent/widget/bike_pickup_location/bike_pickup_location_widget.dart';
 import 'package:sample_bike_customer_app/presentation/page/bike_rent/widget/rent_duration/rent_duration_widget.dart';
@@ -42,7 +43,7 @@ class BikeRentFormWidget extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Start Date',
+          AppLocalizations.of(context)!.startDate,
           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -63,7 +64,7 @@ class BikeRentFormWidget extends ConsumerWidget {
                 const SizedBox(width: 12),
                 Text(
                   selectedDate == null
-                      ? 'Select start date'
+                      ? AppLocalizations.of(context)!.selectStartDate
                       : '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: selectedDate == null
@@ -86,7 +87,7 @@ class BikeRentFormWidget extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Pickup Location',
+          AppLocalizations.of(context)!.pickupLocation,
           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -107,7 +108,7 @@ class BikeRentFormWidget extends ConsumerWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    selectedPickupLocation?.name ?? 'Select pickup location',
+                    selectedPickupLocation?.name ?? AppLocalizations.of(context)!.selectPickupLocationPlaceholder,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: selectedPickupLocation == null
                               ? Colors.grey[600]
@@ -129,7 +130,7 @@ class BikeRentFormWidget extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Phone Number',
+          AppLocalizations.of(context)!.phoneNumber,
           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -139,7 +140,7 @@ class BikeRentFormWidget extends ConsumerWidget {
           controller: phoneController,
           keyboardType: TextInputType.phone,
           decoration: InputDecoration(
-            hintText: 'Enter your phone number',
+            hintText: AppLocalizations.of(context)!.enterYourPhoneNumber,
             prefixIcon: const Icon(Icons.phone),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
@@ -158,7 +159,7 @@ class BikeRentFormWidget extends ConsumerWidget {
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your phone number';
+              return AppLocalizations.of(context)!.pleaseEnterYourPhoneNumber;
             }
             return null;
           },
@@ -174,7 +175,7 @@ class BikeRentFormWidget extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Duration',
+          AppLocalizations.of(context)!.duration,
           style: Theme.of(context).textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -196,7 +197,7 @@ class BikeRentFormWidget extends ConsumerWidget {
                 Expanded(
                   child: Text(
                     selectedDuration == null
-                        ? 'Select duration'
+                        ? AppLocalizations.of(context)!.selectDurationPlaceholder
                         : selectedDuration.duration,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: selectedDuration == null

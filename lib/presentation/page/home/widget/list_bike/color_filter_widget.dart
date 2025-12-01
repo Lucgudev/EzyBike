@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
 import 'list_bike_widget_state.dart';
 import 'list_bike_widget_viewmodel.dart';
 
@@ -26,7 +27,7 @@ class ColorFilterWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(right: 8),
               child: FilterChip(
-                label: const Text('All'),
+                label: Text(AppLocalizations.of(context)!.all),
                 selected: state.selectedColor == null,
                 onSelected: (selected) {
                   if (selected) {
