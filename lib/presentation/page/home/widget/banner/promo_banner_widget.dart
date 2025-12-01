@@ -5,7 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 import 'promo_banner_widget_viewmodel.dart';
 
 class PromoBannerWidget extends ConsumerWidget {
-  const PromoBannerWidget({super.key});
+  final String? title;
+
+  const PromoBannerWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,7 +25,7 @@ class PromoBannerWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                'Offers',
+                title ?? 'Offers',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

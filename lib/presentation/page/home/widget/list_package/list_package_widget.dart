@@ -6,7 +6,9 @@ import 'package:sample_bike_customer_app/data/models/rental_package_model.dart';
 import 'list_package_widget_viewmodel.dart';
 
 class ListPackageWidget extends ConsumerWidget {
-  const ListPackageWidget({super.key});
+  final String? title;
+
+  const ListPackageWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,10 +26,10 @@ class ListPackageWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                'Rental Packages',
+                title ?? 'Rental Packages',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             SingleChildScrollView(
@@ -73,8 +75,8 @@ class ListPackageWidget extends ConsumerWidget {
               Text(
                 package.title,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  fontWeight: FontWeight.bold,
+                ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -85,8 +87,8 @@ class ListPackageWidget extends ConsumerWidget {
                 child: HtmlWidget(
                   package.terms,
                   textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.grey[700],
-                      ),
+                    color: Colors.grey[700],
+                  ),
                 ),
               ),
               const SizedBox(height: 12),
@@ -95,8 +97,8 @@ class ListPackageWidget extends ConsumerWidget {
               Text(
                 CurrencyHelper.formatRupiah(package.price),
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 12),
 

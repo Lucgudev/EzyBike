@@ -91,25 +91,31 @@ class HomeTab extends ConsumerWidget {
   Widget _buildSection(BuildContext context, SectionModel section) {
     // For promotion type, use PromoBannerWidget
     if (section.sectionType == SectionType.promotion) {
-      return const Padding(
+      return Padding(
         padding: EdgeInsets.only(bottom: 16),
-        child: PromoBannerWidget(),
+        child: PromoBannerWidget(
+          title: section.title,
+        ),
       );
     }
 
     // For bike list type, use ListBikeWidget
     if (section.sectionType == SectionType.listBike) {
-      return const Padding(
+      return Padding(
         padding: EdgeInsets.only(bottom: 16),
-        child: ListBikeWidget(),
+        child: ListBikeWidget(
+          title: section.title,
+        ),
       );
     }
 
     // For rental package type, use ListPackageWidget
     if (section.sectionType == SectionType.rentalPackage) {
-      return const Padding(
+      return Padding(
         padding: EdgeInsets.only(bottom: 16),
-        child: ListPackageWidget(),
+        child: ListPackageWidget(
+          title: section.title,
+        ),
       );
     }
 

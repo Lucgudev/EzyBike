@@ -10,7 +10,9 @@ import 'list_bike_widget_viewmodel.dart';
 import 'stock_badge_widget.dart';
 
 class ListBikeWidget extends ConsumerWidget {
-  const ListBikeWidget({super.key});
+  final String? title;
+
+  const ListBikeWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +30,7 @@ class ListBikeWidget extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Text(
-                'Available Bikes',
+                title ?? 'Available Bikes',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
