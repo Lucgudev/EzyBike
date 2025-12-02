@@ -103,7 +103,7 @@ abstract class AppLocalizations {
   /// The bike customer application name
   ///
   /// In en, this message translates to:
-  /// **'Bike Customer App'**
+  /// **'Ezy Ride'**
   String get bikeCustomerApp;
 
   /// Email input field label

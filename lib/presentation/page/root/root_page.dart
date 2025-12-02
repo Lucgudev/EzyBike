@@ -45,8 +45,14 @@ class _RootPageState extends ConsumerState<RootPage> {
       },
     );
 
-    return const Scaffold(
-      body: SizedBox.shrink(),
+    return Scaffold(
+      body: Center(
+        child: Image.asset(
+          'assets/app_icon.png',
+          width: 150,
+          height: 150,
+        ),
+      ),
     );
   }
 }

@@ -12,7 +12,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appName => 'Bike Rental';
 
   @override
-  String get bikeCustomerApp => 'Bike Customer App';
+  String get bikeCustomerApp => 'Ezy Ride';
 
   @override
   String get email => 'Email';

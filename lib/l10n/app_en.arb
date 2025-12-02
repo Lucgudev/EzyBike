@@ -6,7 +6,7 @@
     "description": "The application name"
   },
 
-  "bikeCustomerApp": "Bike Customer App",
+  "bikeCustomerApp": "Ezy Ride",
   "@bikeCustomerApp": {
     "description": "The bike customer application name"
   },

@@ -74,12 +74,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           },
           data: (user) {
             if (user != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(AppLocalizations.of(context)!.loginSuccessful),
-                  backgroundColor: Colors.green,
-                ),
-              );
               // Navigate to homepage after successful login
               ref
                   .read(appNavigatorProvider)
@@ -102,10 +96,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // App Logo/Title
-                  Icon(
-                    Icons.pedal_bike,
-                    size: 80,
-                    color: Theme.of(context).primaryColor,
+                  Image.asset(
+                    'assets/app_icon.png',
+                    width: 80,
+                    height: 80,
                   ),
                   const SizedBox(height: 16),
                   Text(

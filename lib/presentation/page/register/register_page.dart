@@ -114,10 +114,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // App Logo/Title
-                  Icon(
-                    Icons.pedal_bike,
-                    size: 80,
-                    color: Theme.of(context).primaryColor,
+                  Image.asset(
+                    'assets/app_icon.png',
+                    width: 80,
+                    height: 80,
                   ),
                   const SizedBox(height: 16),
                   Text(
