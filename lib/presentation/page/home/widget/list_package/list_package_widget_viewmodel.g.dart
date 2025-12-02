@@ -7,12 +7,12 @@ part of 'list_package_widget_viewmodel.dart';
 // **************************************************************************
 
 String _$listPackageWidgetViewModelHash() =>
-    r'a64189541b6c96062aaa61743c2c411140fd2ca3';
+    r'dac392e6e0356fb600aeffec117356b5033c5705';
 
 /// See also [ListPackageWidgetViewModel].
 @ProviderFor(ListPackageWidgetViewModel)
 final listPackageWidgetViewModelProvider =
-    AutoDisposeAsyncNotifierProvider<
+    AsyncNotifierProvider<
       ListPackageWidgetViewModel,
       ListPackageWidgetState
     >.internal(
@@ -25,7 +25,6 @@ final listPackageWidgetViewModelProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$ListPackageWidgetViewModel =
-    AutoDisposeAsyncNotifier<ListPackageWidgetState>;
+typedef _$ListPackageWidgetViewModel = AsyncNotifier<ListPackageWidgetState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

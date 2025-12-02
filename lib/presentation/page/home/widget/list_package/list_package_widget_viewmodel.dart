@@ -4,7 +4,7 @@ import 'list_package_widget_state.dart';
 
 part 'list_package_widget_viewmodel.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ListPackageWidgetViewModel extends _$ListPackageWidgetViewModel {
   @override
   Future<ListPackageWidgetState> build() async {

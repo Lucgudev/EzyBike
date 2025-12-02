@@ -24,7 +24,9 @@ class HomeTab extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {
-              ref.read(appNavigatorProvider).pushNamedWithResult(
+              ref
+                  .read(appNavigatorProvider)
+                  .pushNamedWithResult(
                     Routes.notificationPage,
                   );
             },
@@ -34,23 +36,41 @@ class HomeTab extends ConsumerWidget {
       body: homeState.when(
         data: (homeModel) {
           if (homeModel == null || homeModel.sections.isEmpty) {
-            return Center(
-              child: Text(AppLocalizations.of(context)!.noSectionsAvailable),
+            return RefreshIndicator(
+              onRefresh: () async {
+                await ref.read(homeTabViewModelProvider.notifier).refresh();
+              },
+              child: CustomScrollView(
+                slivers: [
+                  SliverFillRemaining(
+                    child: Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.noSectionsAvailable,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           }
 
-          return CustomScrollView(
-            slivers: [
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final section = homeModel.sections[index];
-                    return _buildSection(context, section);
-                  },
-                  childCount: homeModel.sections.length,
+          return RefreshIndicator(
+            onRefresh: () async {
+              await ref.read(homeTabViewModelProvider.notifier).refresh();
+            },
+            child: CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final section = homeModel.sections[index];
+                      return _buildSection(context, section);
+                    },
+                    childCount: homeModel.sections.length,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
         loading: () => const Center(
