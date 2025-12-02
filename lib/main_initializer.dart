@@ -10,7 +10,7 @@ Future<ProviderContainer> _mainInitializer() async {
 
 Future<void> _setupSupabase() async {
   await Supabase.initialize(
-    url: 'https://rmauucevbyzvxhfyyvck.supabase.co',
-    anonKey: 'sb_publishable_XeRxBj1N_XXV1Y_vuKqJog_a0c8mKxu',
+    url: AppConstants.supabaseUrl,
+    anonKey: AppConstants.supabaseAnonKey,
   );
 }

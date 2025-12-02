@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
+import 'package:sample_bike_customer_app/presentation/page/home/constants/home_index_tab.dart';
 import 'tab_page/home_tab/home_tab.dart';
 import 'tab_page/order_tab/order_tab.dart';
+import 'tab_page/order_tab/order_tab_viewmodel.dart';
 import 'tab_page/profile_tab/profile_tab.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -24,6 +27,11 @@ class _HomePageState extends ConsumerState<HomePage> {
     setState(() {
       _currentIndex = index;
     });
+
+    // Refresh order data when navigating to order tab
+    if (index == HomeIndexTab.orderTab) {
+      ref.read(orderTabViewModelProvider.notifier).refresh();
+    }
   }
 
   @override
@@ -37,21 +45,21 @@ class _HomePageState extends ConsumerState<HomePage> {
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
         type: BottomNavigationBarType.fixed,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: 'Home',
+            icon: const Icon(Icons.home_outlined),
+            activeIcon: const Icon(Icons.home),
+            label: AppLocalizations.of(context)!.homeTab,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_long_outlined),
-            activeIcon: Icon(Icons.receipt_long),
-            label: 'Orders',
+            icon: const Icon(Icons.receipt_long_outlined),
+            activeIcon: const Icon(Icons.receipt_long),
+            label: AppLocalizations.of(context)!.orderHistoryTab,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-            label: 'Profile',
+            icon: const Icon(Icons.person_outline),
+            activeIcon: const Icon(Icons.person),
+            label: AppLocalizations.of(context)!.profileTab,
           ),
         ],
       ),
