@@ -387,7 +387,7 @@ To optimize performance, rental packages are cached locally:
 - Flutter SDK (>= 3.9.2)
 - Dart SDK (>= 3.9.2)
 - An IDE (VS Code, Android Studio, or IntelliJ)
-- iOS Simulator / Android Emulator or physical device
+- iOS Simulator / Android Emulator / Physical device / Web browser (Chrome, Edge, Brave)
 
 ### Installation
 
@@ -423,6 +423,38 @@ To optimize performance, rental packages are cached locally:
    flutter run --release
    ```
 
+### Running on Web
+
+The app supports Flutter Web and can be run in a browser:
+
+1. **Enable Web Support** (if not already enabled)
+   ```bash
+   flutter config --enable-web
+   ```
+
+2. **Run on Web**
+   ```bash
+   # Run on default browser
+   flutter run -d chrome
+
+   # Or use edge
+   flutter run -d edge
+
+   # Or use web-server (runs on localhost)
+   flutter run -d web-server
+   ```
+
+3. **Access the Web App**
+   - Open your browser and navigate to `http://localhost:port`
+   - The port number will be displayed in the terminal (usually `http://localhost:xxxxx`)
+
+4. **Hot Reload on Web**
+   - Press `r` in the terminal to hot reload
+   - Press `R` to hot restart
+   - Press `q` to quit
+
+**Note:** Web support works best on Chromium-based browsers (Chrome, Edge, Brave)
+
 ### Building for Production
 
 #### Android
@@ -436,6 +468,29 @@ flutter build appbundle --release
 ```bash
 flutter build ios --release
 ```
+
+#### Web
+```bash
+# Build for web (optimized for production)
+flutter build web --release
+
+# Build with custom base href (for subdirectory deployment)
+flutter build web --release --base-href /your-app/
+
+# Build with web renderer options
+flutter build web --release --web-renderer canvaskit  # Better performance
+# or
+flutter build web --release --web-renderer html       # Better compatibility
+```
+
+**Output:** Built files will be in `build/web/` directory
+
+**Deployment Options:**
+- **Firebase Hosting**: `firebase deploy`
+- **Netlify**: Drag and drop the `build/web` folder
+- **Vercel**: Deploy from GitHub repository
+- **GitHub Pages**: Copy `build/web` contents to `gh-pages` branch
+- **Apache/Nginx**: Serve the `build/web` directory
 
 ## Dependencies
 
