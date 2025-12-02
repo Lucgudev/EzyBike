@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
@@ -59,18 +60,20 @@ class OrderCardWidget extends StatelessWidget {
                     width: 80,
                     height: 80,
                     color: Colors.grey[100],
-                    child: Image.network(
-                      order.bike.photoUrl,
+                    child: CachedNetworkImage(
+                      imageUrl: order.bike.photoUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Center(
-                          child: Icon(
-                            Icons.pedal_bike,
-                            size: 40,
-                            color: Colors.grey[400],
-                          ),
-                        );
-                      },
+                      memCacheWidth: 240,
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      errorWidget: (context, url, error) => Center(
+                        child: Icon(
+                          Icons.pedal_bike,
+                          size: 40,
+                          color: Colors.grey[400],
+                        ),
+                      ),
                     ),
                   ),
                 ),

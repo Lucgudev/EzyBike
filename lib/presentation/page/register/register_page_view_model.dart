@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../../core/helper/validation_helper.dart';
 import '../../../data/models/user_model.dart';
 import '../../../data/repositories/auth_repository_impl.dart';
 
@@ -29,8 +30,6 @@ class RegisterPageViewModel extends _$RegisterPageViewModel {
 
 @riverpod
 class RegisterFormValidation extends _$RegisterFormValidation {
-  static final _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-
   @override
   bool build() {
     return false;
@@ -41,20 +40,11 @@ class RegisterFormValidation extends _$RegisterFormValidation {
     required String password,
     required String confirmPassword,
   }) {
-    final isEmailValid = _validateEmail(email);
-    final isPasswordValid = _validatePassword(password);
+    final isEmailValid = ValidationHelper.isValidEmail(email);
+    final isPasswordValid = ValidationHelper.isValidPassword(password);
     final isConfirmPasswordValid = _validateConfirmPassword(password, confirmPassword);
 
     state = isEmailValid && isPasswordValid && isConfirmPasswordValid;
-  }
-
-  bool _validateEmail(String email) {
-    final trimmedEmail = email.trim();
-    return trimmedEmail.isNotEmpty && _emailRegex.hasMatch(trimmedEmail);
-  }
-
-  bool _validatePassword(String password) {
-    return password.isNotEmpty && password.length >= 6;
   }
 
   bool _validateConfirmPassword(String password, String confirmPassword) {
@@ -65,7 +55,7 @@ class RegisterFormValidation extends _$RegisterFormValidation {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
     }
-    if (!_emailRegex.hasMatch(value.trim())) {
+    if (!ValidationHelper.isValidEmail(value)) {
       return 'Please enter a valid email';
     }
     return null;
@@ -75,7 +65,7 @@ class RegisterFormValidation extends _$RegisterFormValidation {
     if (value == null || value.isEmpty) {
       return 'Please enter your password';
     }
-    if (value.length < 6) {
+    if (!ValidationHelper.isValidPassword(value)) {
       return 'Password must be at least 6 characters';
     }
     return null;

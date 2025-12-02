@@ -60,17 +60,9 @@ class HomeTab extends ConsumerWidget {
               await ref.read(homeTabViewModelProvider.notifier).refresh();
             },
             child: CustomScrollView(
-              slivers: [
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final section = homeModel.sections[index];
-                      return _buildSection(context, section);
-                    },
-                    childCount: homeModel.sections.length,
-                  ),
-                ),
-              ],
+              slivers: homeModel.sections
+                  .expand((section) => _buildSectionSlivers(context, ref, section))
+                  .toList(),
             ),
           );
         },
@@ -89,39 +81,55 @@ class HomeTab extends ConsumerWidget {
     );
   }
 
-  Widget _buildSection(BuildContext context, SectionModel section) {
+  List<Widget> _buildSectionSlivers(BuildContext context, WidgetRef ref, SectionModel section) {
     // For promotion type, use PromoBannerWidget
     if (section.sectionType == SectionType.promotion) {
-      return Padding(
-        padding: EdgeInsets.only(bottom: 16),
-        child: PromoBannerWidget(
-          title: section.title,
+      return [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 16),
+            child: PromoBannerWidget(
+              title: section.title,
+            ),
+          ),
         ),
-      );
+      ];
     }
 
     // For bike list type, use ListBikeWidget
     if (section.sectionType == SectionType.listBike) {
-      return Padding(
-        padding: EdgeInsets.only(bottom: 16),
-        child: ListBikeWidget(
-          title: section.title,
+      return [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 16),
+            child: ListBikeWidget(
+              title: section.title,
+            ),
+          ),
         ),
-      );
+      ];
     }
 
     // For rental package type, use ListPackageWidget
     if (section.sectionType == SectionType.rentalPackage) {
-      return Padding(
-        padding: EdgeInsets.only(bottom: 16),
-        child: ListPackageWidget(
-          title: section.title,
+      return [
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 16),
+            child: ListPackageWidget(
+              title: section.title,
+            ),
+          ),
         ),
-      );
+      ];
     }
 
     // For other types, show the card
-    return _buildSectionCard(context, section);
+    return [
+      SliverToBoxAdapter(
+        child: _buildSectionCard(context, section),
+      ),
+    ];
   }
 
   Widget _buildSectionCard(BuildContext context, SectionModel section) {

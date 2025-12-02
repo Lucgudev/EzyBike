@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
@@ -123,29 +124,20 @@ class ListBikeWidget extends ConsumerWidget {
                   decoration: BoxDecoration(
                     color: Colors.grey[100],
                   ),
-                  child: Image.network(
-                    bike.photoUrl,
+                  child: CachedNetworkImage(
+                    imageUrl: bike.photoUrl,
                     fit: BoxFit.cover,
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                    loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
-                    errorBuilder: (context, error, stackTrace) {
-                      return Center(
-                        child: Icon(
-                          Icons.pedal_bike,
-                          size: 48,
-                          color: Colors.grey[400],
-                        ),
-                      );
-                    },
+                    memCacheWidth: 400,
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) => Center(
+                      child: Icon(
+                        Icons.pedal_bike,
+                        size: 48,
+                        color: Colors.grey[400],
+                      ),
+                    ),
                   ),
                 ),
               ),

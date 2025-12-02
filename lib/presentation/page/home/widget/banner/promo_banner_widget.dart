@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/data/models/banner_model.dart';
@@ -78,35 +79,25 @@ class PromoBannerWidget extends ConsumerWidget {
             fit: StackFit.expand,
             children: [
               // Banner Image (Background)
-              Image.network(
-                promo.photoUrl,
+              CachedNetworkImage(
+                imageUrl: promo.photoUrl,
                 fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                    color: Colors.grey[200],
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        value: loadingProgress.expectedTotalBytes != null
-                            ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                            : null,
-                      ),
+                placeholder: (context, url) => Container(
+                  color: Colors.grey[200],
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey[200],
+                  child: Center(
+                    child: Icon(
+                      Icons.image_not_supported,
+                      size: 48,
+                      color: Colors.grey[400],
                     ),
-                  );
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey[200],
-                    child: Center(
-                      child: Icon(
-                        Icons.image_not_supported,
-                        size: 48,
-                        color: Colors.grey[400],
-                      ),
-                    ),
-                  );
-                },
+                  ),
+                ),
               ),
               // Gradient overlay for better text readability
               Container(
@@ -211,7 +202,9 @@ class PromoBannerWidget extends ConsumerWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(AppLocalizations.of(context)!.errorOpeningLinkError(e.toString())),
+            content: Text(
+              AppLocalizations.of(context)!.errorOpeningLinkError(e.toString()),
+            ),
             backgroundColor: Colors.red,
           ),
         );

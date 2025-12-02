@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sample_bike_customer_app/core/constants/bike_color.dart';
 import 'package:sample_bike_customer_app/data/models/bike_model.dart';
@@ -24,23 +25,30 @@ class BikeInfoCardWidget extends StatelessWidget {
             // Bike Image
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                bike.photoUrl,
+              child: CachedNetworkImage(
+                imageUrl: bike.photoUrl,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.grey[200],
-                    child: Icon(
-                      Icons.pedal_bike,
-                      size: 40,
-                      color: Colors.grey[400],
-                    ),
-                  );
-                },
+                memCacheWidth: 300,
+                placeholder: (context, url) => Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.grey[200],
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+                errorWidget: (context, url, error) => Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.grey[200],
+                  child: Icon(
+                    Icons.pedal_bike,
+                    size: 40,
+                    color: Colors.grey[400],
+                  ),
+                ),
               ),
             ),
             const SizedBox(width: 16),
