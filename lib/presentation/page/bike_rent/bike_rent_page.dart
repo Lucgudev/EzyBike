@@ -66,7 +66,7 @@ class _BikeRentPageState extends ConsumerState<BikeRentPage> {
             // Show error message
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(error.toString().replaceAll('Exception: ', '')),
+                content: Text(error.toString()),
                 backgroundColor: Colors.red,
               ),
             );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sample_bike_customer_app/core/constants/app_constants.dart';
 import 'package:sample_bike_customer_app/core/provider/global_provider.dart';
 import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
@@ -74,15 +75,14 @@ class ProfileTab extends ConsumerWidget {
           context,
           icon: Icons.privacy_tip_outlined,
           title: AppLocalizations.of(context)!.privacyPolicy,
-          onTap: () =>
-              _launchUrl('https://electrum.id/privacy-policy', context),
+          onTap: () => _launchUrl(AppConstants.privacyPolicyUrl, context),
         ),
         const Divider(height: 1),
         _buildMenuItem(
           context,
           icon: Icons.info_outline,
           title: AppLocalizations.of(context)!.aboutUs,
-          onTap: () => _launchUrl('https://electrum.id/about-us', context),
+          onTap: () => _launchUrl(AppConstants.privacyPolicyUrl, context),
         ),
         const Divider(height: 1),
         _buildMenuItem(
@@ -132,7 +132,9 @@ class ProfileTab extends ConsumerWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(AppLocalizations.of(context)!.couldNotOpenUrl(urlString)),
+            content: Text(
+              AppLocalizations.of(context)!.couldNotOpenUrl(urlString),
+            ),
             backgroundColor: Colors.red,
           ),
         );
@@ -180,7 +182,7 @@ class ProfileTab extends ConsumerWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                e.toString().replaceAll('Exception: ', ''),
+                e.toString(),
               ),
               backgroundColor: Colors.red,
             ),
