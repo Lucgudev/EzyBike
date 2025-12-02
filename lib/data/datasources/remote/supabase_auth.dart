@@ -1,4 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../core/exceptions/user_friendly_exception.dart';
+import '../../../core/helper/supabase_error_handler.dart';
 import '../../models/user_model.dart';
 
 class SupabaseAuthDataSource {
@@ -16,7 +18,7 @@ class SupabaseAuthDataSource {
 
       final user = response.user;
       if (user == null) {
-        throw Exception('Sign in failed: No user data returned');
+        throw ErrorException('Unable to sign in. Please try again.');
       }
 
       return UserModel(
@@ -29,10 +31,8 @@ class SupabaseAuthDataSource {
             ? DateTime.parse(user.createdAt!)
             : null,
       );
-    } on AuthException catch (e) {
-      throw Exception('Authentication failed: ${e.message}');
     } catch (e) {
-      throw Exception('Sign in failed: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 
@@ -48,7 +48,7 @@ class SupabaseAuthDataSource {
 
       final user = response.user;
       if (user == null) {
-        throw Exception('Sign up failed: No user data returned');
+        throw ErrorException('Unable to create account. Please try again.');
       }
 
       return UserModel(
@@ -61,20 +61,16 @@ class SupabaseAuthDataSource {
             ? DateTime.parse(user.createdAt!)
             : null,
       );
-    } on AuthException catch (e) {
-      throw Exception('Authentication failed: ${e.message}');
     } catch (e) {
-      throw Exception('Sign up failed: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 
   Future<void> signOut() async {
     try {
       await Supabase.instance.client.auth.signOut();
-    } on AuthException catch (e) {
-      throw Exception('Sign out failed: ${e.message}');
     } catch (e) {
-      throw Exception('Sign out failed: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 
@@ -97,7 +93,7 @@ class SupabaseAuthDataSource {
             : null,
       );
     } catch (e) {
-      throw Exception('Failed to get current user: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 }

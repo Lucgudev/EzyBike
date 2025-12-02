@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../core/helper/supabase_error_handler.dart';
 import '../../models/home_model.dart';
 import '../../models/rental_package_model.dart';
 
@@ -20,7 +21,7 @@ class SupabaseHomeDataSource {
           .toList();
       return HomeModel(sections: sections);
     } catch (e) {
-      throw Exception('Failed to get home sections: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 
@@ -37,7 +38,7 @@ class SupabaseHomeDataSource {
           )
           .toList();
     } catch (e) {
-      throw Exception('Failed to get packages: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 }

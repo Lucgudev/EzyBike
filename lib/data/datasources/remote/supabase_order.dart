@@ -1,4 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../../core/exceptions/user_friendly_exception.dart';
+import '../../../core/helper/supabase_error_handler.dart';
 import '../../models/bike_rent_order_model.dart';
 import '../../models/bike_rent_request_model.dart';
 import '../../models/pickup_location_model.dart';
@@ -11,7 +13,7 @@ class SupabaseOrderDataSource {
     try {
       await Supabase.instance.client.from('bike_rent').insert(request.toJson());
     } catch (e) {
-      throw Exception('Failed to create bike rent: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 
@@ -28,7 +30,7 @@ class SupabaseOrderDataSource {
 
       return locations;
     } catch (e) {
-      throw Exception('Failed to get pickup locations: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 
@@ -48,7 +50,7 @@ class SupabaseOrderDataSource {
 
       return durations;
     } catch (e) {
-      throw Exception('Failed to get rent durations: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 
@@ -56,7 +58,7 @@ class SupabaseOrderDataSource {
     try {
       final user = Supabase.instance.client.auth.currentUser;
       if (user == null) {
-        throw Exception('User not authenticated');
+        throw ErrorException('Please sign in to view your order history.');
       }
 
       final data = await Supabase.instance.client
@@ -73,24 +75,22 @@ class SupabaseOrderDataSource {
           .eq('user_id', user.id)
           .order('created_at', ascending: false);
 
-      final List<BikeRentOrderModel> orders = (data as List)
-          .map((jsonItem) {
-            final item = jsonItem as Map<String, dynamic>;
-            return BikeRentOrderModel.fromJson({
-              'id': item['id'],
-              'created_at': item['created_at'],
-              'start_date': item['start_date'],
-              'total': item['total'],
-              'bike': item['bike'],
-              'pickup_area': item['pickup_area'],
-              'duration': item['duration'],
-            });
-          })
-          .toList();
+      final List<BikeRentOrderModel> orders = (data as List).map((jsonItem) {
+        final item = jsonItem as Map<String, dynamic>;
+        return BikeRentOrderModel.fromJson({
+          'id': item['id'],
+          'created_at': item['created_at'],
+          'start_date': item['start_date'],
+          'total': item['total'],
+          'bike': item['bike'],
+          'pickup_area': item['pickup_area'],
+          'duration': item['duration'],
+        });
+      }).toList();
 
       return orders;
     } catch (e) {
-      throw Exception('Failed to get order history: $e');
+      throw SupabaseErrorHandler.toUserFriendlyException(e);
     }
   }
 }

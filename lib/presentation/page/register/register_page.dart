@@ -40,7 +40,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   }
 
   void _onFormChanged() {
-    ref.read(registerFormValidationProvider.notifier).validateForm(
+    ref
+        .read(registerFormValidationProvider.notifier)
+        .validateForm(
           email: _emailController.text,
           password: _passwordController.text,
           confirmPassword: _confirmPasswordController.text,
@@ -49,7 +51,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
   Future<void> _handleSignUp() async {
     if (_formKey.currentState?.validate() ?? false) {
-      await ref.read(registerPageViewModelProvider.notifier).signUp(
+      await ref
+          .read(registerPageViewModelProvider.notifier)
+          .signUp(
             email: _emailController.text.trim(),
             password: _passwordController.text,
           );
@@ -69,7 +73,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           error: (error, stackTrace) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(AppLocalizations.of(context)!.registrationFailedError(error.toString())),
+                content: Text(error.toString()),
                 backgroundColor: Colors.red,
               ),
             );
@@ -78,7 +82,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             if (user != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(AppLocalizations.of(context)!.registrationSuccessful),
+                  content: Text(
+                    AppLocalizations.of(context)!.registrationSuccessful,
+                  ),
                   backgroundColor: Colors.green,
                 ),
               );
@@ -117,16 +123,16 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   Text(
                     AppLocalizations.of(context)!.createAccount,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     AppLocalizations.of(context)!.signUpToGetStarted,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.grey[600],
-                        ),
+                      color: Colors.grey[600],
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 48),
@@ -184,7 +190,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     onFieldSubmitted: (_) => _handleSignUp(),
                     decoration: InputDecoration(
                       labelText: AppLocalizations.of(context)!.confirmPassword,
-                      hintText: AppLocalizations.of(context)!.reEnterYourPassword,
+                      hintText: AppLocalizations.of(
+                        context,
+                      )!.reEnterYourPassword,
                       prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -200,8 +208,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                       ),
                       border: const OutlineInputBorder(),
                     ),
-                    validator: (value) => formValidation
-                        .validateConfirmPasswordField(value, _passwordController.text),
+                    validator: (value) =>
+                        formValidation.validateConfirmPasswordField(
+                          value,
+                          _passwordController.text,
+                        ),
                   ),
                   const SizedBox(height: 24),
 

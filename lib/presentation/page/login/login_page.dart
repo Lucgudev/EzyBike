@@ -67,7 +67,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           error: (error, stackTrace) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(AppLocalizations.of(context)!.loginFailedError(error.toString())),
+                content: Text(error.toString()),
                 backgroundColor: Colors.red,
               ),
             );
