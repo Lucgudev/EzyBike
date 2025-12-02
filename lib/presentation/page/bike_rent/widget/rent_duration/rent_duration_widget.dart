@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
+import 'package:sample_bike_customer_app/presentation/widget/error_state_widget.dart';
 import '../../provider/bike_rent_form_provider.dart';
 import 'rent_duration_view_model.dart';
 
@@ -112,33 +113,10 @@ class RentDurationWidget extends ConsumerWidget {
                   child: CircularProgressIndicator(),
                 ),
               ),
-              error: (error, stackTrace) => Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(32),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        Icons.error_outline,
-                        size: 48,
-                        color: Colors.red,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        AppLocalizations.of(context)!.failedToLoadDurations,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        error.toString(),
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              error: (error, stackTrace) => ErrorStateWidget(
+                title: AppLocalizations.of(context)!.failedToLoadDurations,
+                errorMessage: error.toString(),
+                iconSize: 48,
               ),
             ),
           ),

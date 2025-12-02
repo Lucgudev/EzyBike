@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sample_bike_customer_app/core/provider/global_provider.dart';
 import 'package:sample_bike_customer_app/core/router/routes.dart';
 import 'package:sample_bike_customer_app/l10n/app_localizations.dart';
+import 'package:sample_bike_customer_app/presentation/widget/error_state_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'profile_tab_viewmodel.dart';
 
@@ -58,30 +59,9 @@ class ProfileTab extends ConsumerWidget {
         loading: () => const Center(
           child: CircularProgressIndicator(),
         ),
-        error: (error, stackTrace) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.error_outline,
-                size: 60,
-                color: Colors.red,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                AppLocalizations.of(context)!.failedToLoadProfile,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                error.toString(),
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Colors.grey[600],
-                ),
-              ),
-            ],
-          ),
+        error: (error, stackTrace) => ErrorStateWidget(
+          title: AppLocalizations.of(context)!.failedToLoadProfile,
+          errorMessage: error.toString(),
         ),
       ),
     );
