@@ -10,6 +10,7 @@ A modern Flutter-based bike rental application that allows customers to browse a
 - [Screenshots](#screenshots)
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
+- [Backend & Database](#backend--database)
 - [Getting Started](#getting-started)
 - [Dependencies](#dependencies)
 - [Testing](#testing)
@@ -52,7 +53,7 @@ This project follows **Clean Architecture** principles with a clear separation o
 ```
 ┌─────────────────────────────────────────────┐
 │          Presentation Layer                 │
-│  (UI, Pages, Widgets, ViewModels)          │
+│  (UI, Pages, Widgets, ViewModels)           │
 └──────────────┬──────────────────────────────┘
                │
 ┌──────────────▼──────────────────────────────┐
@@ -180,6 +181,204 @@ lib/
 
 test/                      # Unit tests for ViewModels
 ```
+
+## Backend & Database
+
+This project uses **Supabase** as the backend service, providing authentication, database, and storage capabilities.
+
+### Database Schema
+
+The application uses a PostgreSQL database (via Supabase) with the following table structure:
+
+![Database Model](assets/screenshoot/database_model.png)
+
+### Tables Overview
+
+#### 1. **users** (Supabase Auth)
+Managed by Supabase Authentication system.
+- Stores user credentials and authentication data
+- Linked to user metadata for profile information
+
+#### 2. **bikes**
+Stores information about available bikes for rent.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | integer | Primary key |
+| model | text | Bike model name |
+| photo_url | text | URL to bike image |
+| range | integer | Maximum range in kilometers |
+| stock | integer | Available quantity |
+| description | text | Bike description |
+| color | text | Bike color for filtering |
+| battery_capacity | double | Battery capacity (Ah) |
+| max_speed | double | Maximum speed (km/h) |
+| rental_price_per_day | numeric | Daily rental price |
+| created_at | timestamp | Record creation time |
+
+#### 3. **bike_rent**
+Stores bike rental orders/bookings.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | integer | Primary key |
+| user_id | uuid | Foreign key to users |
+| bike_id | integer | Foreign key to bikes |
+| start_date | date | Rental start date |
+| duration_id | text | Foreign key to rent_duration |
+| pickup_area_id | text | Foreign key to pickup_area |
+| phone_number | text | Contact phone number |
+| email | text | Contact email |
+| total | numeric | Total rental cost |
+| created_at | timestamp | Order creation time |
+
+**Relationships:**
+- `bike_rent.user_id` → `users.id`
+- `bike_rent.bike_id` → `bikes.id`
+- `bike_rent.duration_id` → `rent_duration.id`
+- `bike_rent.pickup_area_id` → `pickup_area.id`
+
+#### 4. **rent_duration**
+Predefined rental duration options.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | text | Primary key |
+| duration | text | Display name (e.g., "1 Day", "1 Week") |
+| value | integer | Duration in days |
+| sort_order | integer | Display order |
+
+**Sample Data:**
+- "1 Day" (value: 1)
+- "3 Days" (value: 3)
+- "1 Week" (value: 7)
+- "1 Month" (value: 30)
+
+#### 5. **pickup_area**
+Available bike pickup locations.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | text | Primary key |
+| name | text | Location name |
+
+**Sample Data:**
+- "Downtown Station"
+- "Airport Terminal"
+- "Shopping Mall"
+- "City Center"
+
+#### 6. **rental_package**
+Special rental package offers.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | integer | Primary key |
+| title | text | Package name |
+| price | numeric | Package price |
+| terms | text | Package terms/conditions |
+| description | text | Package description |
+
+**Sample Data:**
+- "Basic Package" - Short term rentals
+- "Premium Package" - Extended rentals with discount
+- "Family Package" - Multiple bikes
+
+#### 7. **home_sections**
+Dynamic home page section configuration.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | integer | Primary key |
+| title | text | Section title |
+| description | text | Section description |
+| type | text | Section type (promotion, rental_package, list_bike) |
+| sort_order | integer | Display order |
+
+**Section Types:**
+- `promotion` - Promotional banners
+- `rental_package` - Rental package offerings
+- `list_bike` - Available bikes list
+
+#### 8. **promo_banner**
+Promotional banners for marketing.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| id | integer | Primary key |
+| photo_url | text | Banner image URL |
+| title | text | Banner title |
+| description | text | Banner description |
+| action_url | text | Deep link or URL on tap |
+
+### Database Features
+
+#### Row Level Security (RLS)
+Supabase RLS policies ensure data security:
+- Users can only view their own rental orders
+- Public read access to bikes, packages, and pickup locations
+- Authenticated users can create rental bookings
+
+#### Realtime Subscriptions (Future)
+Supabase Realtime can be enabled for:
+- Live stock updates for bikes
+- Order status notifications
+- Promotional banner updates
+
+#### Storage
+Supabase Storage is used for:
+- Bike images (`bikes.photo_url`)
+- Promotional banners (`promo_banner.photo_url`)
+- User profile photos (future feature)
+
+### Data Flow
+
+```
+User Authentication
+       ↓
+Home Page (sections, banners, packages)
+       ↓
+Browse Bikes (filter by color)
+       ↓
+View Bike Details
+       ↓
+Select Rental Options (date, location, duration)
+       ↓
+Create Order (bike_rent record)
+       ↓
+View Order History
+```
+
+### API Integration
+
+The app uses Supabase Client SDK for all database operations:
+
+```dart
+// Example: Fetching bikes
+final bikes = await Supabase.instance.client
+    .from('bikes')
+    .select()
+    .order('created_at', ascending: false);
+
+// Example: Creating rental order
+await Supabase.instance.client
+    .from('bike_rent')
+    .insert({
+      'user_id': userId,
+      'bike_id': bikeId,
+      'start_date': startDate,
+      'duration_id': durationId,
+      // ...
+    });
+```
+
+### Caching Strategy
+
+To optimize performance, rental packages are cached locally:
+- **Cache Duration**: 30 minutes
+- **Storage**: SharedPreferences
+- **Strategy**: Cache-first with fallback to API
+- **Invalidation**: Automatic after 30 minutes
 
 ## Getting Started
 
@@ -746,25 +945,6 @@ flutter test integration_test/
 8. Rating System
 9. Multi-language Support
 10. Analytics
-
-### Estimated Timeline
-
-- **Forgot Password**: 1-2 days
-- **Profile Update**: 2-3 days
-- **Environment Setup**: 1 day
-- **Pagination**: 2-3 days
-- **Push Notifications**: 3-4 days
-- **Payment Integration**: 5-7 days
-
-**Total Estimated Time for Phase 1 & 2**: 2-3 weeks
-
-## Contributing
-
-1. Follow the existing architecture patterns
-2. Write tests for new ViewModels
-3. Use Freezed for state classes
-4. Generate code after model changes
-5. Follow Dart/Flutter style guidelines
 
 ## License
 
